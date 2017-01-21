@@ -7,9 +7,15 @@
   <title><%= APP_TITLE %></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="icon" href="assets/favicon/favicon-<%= ENV_CONFIG.ENV %>.ico" type="image/x-icon">
+
   <!-- inject:css -->
   <!-- endinject -->
+  <script src="https://ajax.googleapis.com/ajax/libs/hammerjs/2.0.8/hammer.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://rawgit.com/angular/material2-builds/master/core/theming/prebuilt/indigo-pink.css" rel="stylesheet">
+
+
 </head>
 <body>
 
@@ -38,7 +44,7 @@
   System.import('<%= BOOTSTRAP_MODULE %>')
     .catch(function (e) {
       console.error(e.stack || e,
-        'Not expecting this error? Report it at https://github.com/mgechev/angular2-seed/issues');
+        'Not expecting this error? Report it at https://github.com/mgechev/angular-seed/issues');
     });
   </script>
   <% } %>

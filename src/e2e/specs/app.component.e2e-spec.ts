@@ -1,11 +1,13 @@
+import { browser, element, by } from 'protractor';
+
 describe('App', () => {
 
-  beforeEach( () => {
-    browser.get('/');
+  beforeEach(async () => {
+    return await browser.get('/');
   });
 
   it('should have a title', () => {
-    expect(browser.getTitle()).toEqual('Welcome to angular2-seed!');
+    expect(browser.getTitle()).toEqual('Welcome to angular-seed!');
   });
 
   it('should have <nav>', () => {

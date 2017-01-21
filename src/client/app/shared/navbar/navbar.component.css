@@ -7,13 +7,17 @@
   padding: 0 16px;
 }
 
-nav {
+nav a {
   color: #8f8f8f;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 48px;
-  margin-top: 2px;
   margin-right: 20px;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
 }
 
-nav a {
-  text-decoration: none;
+nav a.router-link-active {
+  color: #106cc8;
 }

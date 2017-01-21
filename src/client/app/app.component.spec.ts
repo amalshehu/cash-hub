@@ -12,7 +12,6 @@ import {
 import {
   RouterTestingModule
 } from '@angular/router/testing';
-import { MaterialModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
@@ -29,7 +28,7 @@ export function main() {
     ];
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [FormsModule, RouterTestingModule.withRoutes(config), MaterialModule.forRoot()],
+        imports: [FormsModule, RouterTestingModule.withRoutes(config)],
         declarations: [TestComponent, ToolbarComponent,
           NavbarComponent, AppComponent,
           HomeComponent, AboutComponent],

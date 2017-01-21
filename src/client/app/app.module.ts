@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
 import { AppComponent } from './app.component';
-import { routes } from './app.routes';
+import { AppRoutingModule } from './app-routing.module';
+import { MaterialModule } from '@angular/material';
 
 import { AboutModule } from './about/about.module';
 import { HomeModule } from './home/home.module';
+import { LoginModule } from './login/login.module';
+import { RegisterModule } from './register/register.module';
+
 import { SharedModule } from './shared/shared.module';
 
-
 @NgModule({
-  imports: [BrowserModule, HttpModule, RouterModule.forRoot(routes), MaterialModule.forRoot(), AboutModule, HomeModule,
-    SharedModule.forRoot()],
+  imports: [BrowserModule, HttpModule, AppRoutingModule, AboutModule, HomeModule, RegisterModule,
+     SharedModule.forRoot(), LoginModule, MaterialModule.forRoot()],
   declarations: [AppComponent],
   providers: [{
     provide: APP_BASE_HREF,
@@ -23,5 +24,4 @@ import { SharedModule } from './shared/shared.module';
   bootstrap: [AppComponent]
 
 })
-
 export class AppModule { }
