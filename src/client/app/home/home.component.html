@@ -1,10 +1,118 @@
-<p>Howdy! Here's a list of awesome computer scientists. Do you know any others? Add to the list yourself.</p>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <md-card class="card_align" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="space-between center" fxFlex="85%" style="height:620px;">
 
-<form (submit)="addName()">
-  <input [(ngModel)]="newName" name="newName" placeholder="Awesome Computer Scientist">
-  <button type="submit">Add</button>
-</form>
+    <form class="example-form">
+      <md-input-container>
+        <input md-input placeholder="Cash Hub" disabled value="Serial Number">
 
-<ul>
-  <li *ngFor="let name of names">{{name}}</li>
-</ul>
+      </md-input-container>
+      <table >
+        <tr>
+          <td>
+            <md-input-container>
+              <input md-input placeholder="Name">
+            </md-input-container>
+
+          </td>
+          <td>
+            <md-input-container >
+              <input type="date" md-input placeholder="Date">
+            </md-input-container>
+          </td>
+        </tr>
+      </table>
+      <div class="register_card" fxFlex="45%">
+      <p>
+        <md-input-container>
+          <textarea md-input placeholder="Address"></textarea>
+        </md-input-container>
+
+        <md-input-container >
+          <textarea md-input placeholder="Remarks"></textarea>
+        </md-input-container>
+      </p>
+    </div>
+
+      <table >
+        <tr>
+
+          <td>
+            <md-input-container >
+              <input md-input placeholder="ID Card No.">
+            </md-input-container>
+          </td>
+
+
+        </tr>
+      </table>
+
+      <table >
+        <tr>
+          <td>
+            <md-input-container >
+              <input md-input placeholder="Phone No.">
+            </md-input-container>
+          </td>
+          <td>
+            <md-input-container >
+              <input md-input placeholder="Mobile No.">
+            </md-input-container>
+          </td>
+          <td>
+          <md-select placeholder="Nationality" [(ngModel)]="selectedValue" name="food">
+            <md-option *ngFor="let food of foods" [value]="food.value">
+              {{food.viewValue}}
+            </md-option>
+          </md-select>
+        </td>
+        <td>
+        <md-select placeholder="Currency Purchased" [(ngModel)]="selectedValue" name="food">
+          <md-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </md-option>
+        </md-select>
+      </td>
+      <td>
+      <md-select placeholder="Currency Type" [(ngModel)]="selectedValue" name="food">
+        <md-option *ngFor="let food of foods" [value]="food.value">
+          {{food.viewValue}}
+        </md-option>
+      </md-select>
+    </td>
+        </tr>
+      </table>
+
+      <md-input-container >
+        <input md-input placeholder="Amount">
+      </md-input-container>
+      <md-input-container >
+        <input md-input placeholder="Present Rate">
+      </md-input-container>
+      <md-input-container >
+        <input md-input placeholder="Rupee Equivalent">
+      </md-input-container>
+
+      <md-input-container >
+        <input md-input placeholder="Tax %" value="14">
+      </md-input-container>
+      <md-input-container >
+        <input md-input placeholder="Tax Amount" disabled value="Tax">
+      </md-input-container>
+      <md-input-container >
+        <input md-input placeholder="Grand Total" disabled value="Total">
+      </md-input-container>
+
+
+
+      <div fxFlex="90%" >
+           <ngx-datatable class="material" [rows]="rows" [columns]="columns">
+          </ngx-datatable>
+     </div>
+
+      <button md-raised-button color="primary" >Save</button>
+      <button md-raised-button color="warn">Remove selected currency</button>
+      <button md-raised-button color="primary">Add</button>
+      <button md-raised-button color="accent">Edit</button>
+    </form>
+  </md-card>
+</div>

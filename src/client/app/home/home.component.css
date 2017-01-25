@@ -1,13 +1,61 @@
-:host {
-  display: block;
-  padding: 0 16px;
+@import '/node_modules/@swimlane/ngx-datatable/release/datatable.css';
+@import '/node_modules/@swimlane/ngx-datatable/release/material.css';
+@import '/node_modules/@swimlane/ngx-datatable/release/assets/icons.css';
+
+.select md2-select
+{
+	position: relative;
+    bottom: 11px;
+    left: 15px;
+}
+.md_select md2-select
+{
+	width: 100%;
+}
+.register_card
+{
+	/*background-color: #2f9df4;*/
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+}
+.card {
+    background-color: #fff;
+    bottom: 0;
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.3);
+    height: 300px;
+    left: 0;
+    margin: auto;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 300px;
+}
+.example-form {
+
+    font-size: 15px;
 }
 
-input {
-  width: 250px;
+.example-full-width {
+  width: 50%;
+}
+.example-full-width2 {
+  width: 50%;
+  float: right;
+}
+.card_align
+{
+	margin-top: 2em;
+	border-radius: 15px;
+	margin-bottom: 2em;
+}
+.card_align:hover
+{
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.18), 0 3px 5px 0 rgba(0, 0, 0, 0.30);
 }
 
-ul {
-  list-style-type: none;
-  padding: 0 0 0 8px;
+.zdepth1 {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }

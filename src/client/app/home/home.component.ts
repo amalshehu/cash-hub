@@ -12,45 +12,33 @@ import { NameListService } from '../shared/name-list/name-list.service';
 })
 export class HomeComponent implements OnInit {
 
-  newName: string = '';
-  errorMessage: string;
-  names: any[] = [];
+  selectedValue: string;
+   foods = [
+     {value: 'steak-0', viewValue: 'Steak'},
+     {value: 'pizza-1', viewValue: 'Pizza'},
+     {value: 'tacos-2', viewValue: 'Tacos'}
+   ];
 
+   rows = [
+   { name: 'Austin', gender: 'Male', company: 'Swimlane' },
+   { name: 'Dany', gender: 'Male', company: 'KFC' },
+   { name: 'Molly', gender: 'Female', company: 'Burger King' },
+   ];
+   columns = [
+   { prop: 'name' },
+   { name: 'Gender' },
+   { name: 'Company' }
+   ];
   /**
    * Creates an instance of the HomeComponent with the injected
    * NameListService.
    *
    * @param {NameListService} nameListService - The injected NameListService.
    */
-  constructor(public nameListService: NameListService) {}
+  constructor() {}
 
-  /**
-   * Get the names OnInit
-   */
-  ngOnInit() {
-    this.getNames();
+    ngOnInit() {
+
+    }
+
   }
-
-  /**
-   * Handle the nameListService observable
-   */
-  getNames() {
-    this.nameListService.get()
-      .subscribe(
-        names => this.names = names,
-        error => this.errorMessage = <any>error
-      );
-  }
-
-  /**
-   * Pushes a new name onto the names array
-   * @return {boolean} false to prevent default form submit behavior to refresh the page.
-   */
-  addName(): boolean {
-    // TODO: implement nameListService.post
-    this.names.push(this.newName);
-    this.newName = '';
-    return false;
-  }
-
-}
