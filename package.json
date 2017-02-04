@@ -138,6 +138,7 @@
     "@swimlane/ngx-datatable": "^5.0.0",
     "core-js": "^2.4.1",
     "intl": "^1.2.5",
+    "md2": "0.0.13-1",
     "rxjs": "^5.0.3",
     "systemjs": "0.19.41",
     "zone.js": "^0.7.2"
