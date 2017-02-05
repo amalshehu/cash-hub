@@ -22,6 +22,10 @@
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-2.4.2.tgz#774fb675733437be5eab635ab13235c76ec961ba"
 
+"@angular/flex-layout@^2.0.0-beta.3":
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-2.0.0-beta.4.tgz#b8cbc15ed17a35617738bb9cd76d8d80ba11638f"
+
 "@angular/forms@~2.4.0":
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-2.4.2.tgz#73286f4e10d795c66b0c61df0c4e906bfe7917d1"
@@ -29,6 +33,10 @@
 "@angular/http@~2.4.0":
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@angular/http/-/http-2.4.2.tgz#5fbebcc19e454b59968e9896997fff45ae3bdee8"
+
+"@angular/material@^2.0.0-beta.1":
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-2.0.0-beta.1.tgz#106a0b79fb2b48a7606a0682c4e5d0bbe03364a0"
 
 "@angular/platform-browser-dynamic@~2.4.0":
   version "2.4.2"
@@ -53,6 +61,10 @@
   resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-0.5.1.tgz#7a69bec999eef41903dddaaccdc862cfcface52c"
   dependencies:
     tsickle "^0.2"
+
+"@swimlane/ngx-datatable@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@swimlane/ngx-datatable/-/ngx-datatable-5.0.0.tgz#e2c98a6e10a3fc4937f9c8a8f851d9f1fa0def56"
 
 "@types/async@^2.0.32":
   version "2.0.37"
@@ -4249,6 +4261,10 @@ math-expression-evaluator@^1.2.14:
   dependencies:
     lodash.indexof "^4.0.5"
 
+md2@0.0.13-1:
+  version "0.0.13-1"
+  resolved "https://registry.yarnpkg.com/md2/-/md2-0.0.13-1.tgz#2c52002367bee72ad93e9b82e514a67cd7ba1c1b"
+
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
@@ -5661,9 +5677,9 @@ rx@4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/rx/-/rx-4.1.0.tgz#a5f13ff79ef3b740fe30aa803fb09f98805d4782"
 
-rxjs@~5.0.3:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.0.3.tgz#fc8bdf464ebf938812748e4196788f392fef9754"
+rxjs@^5.0.3:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.1.0.tgz#0aa9018b7f440b505fa42bd742b6738be550e720"
   dependencies:
     symbol-observable "^1.0.1"
 
