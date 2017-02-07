@@ -59,9 +59,9 @@
             </md-input-container>
           </td>
           <td>
-            <md2-autocomplete [items]="items"
+            <md2-autocomplete [items]="currency"
                       item-text="name"
-                      item-value="value"
+                      item-value="id"
                       placeholder="Nationality">
             </md2-autocomplete>
         </td>
@@ -69,8 +69,8 @@
 
 
         <td>
-          <md2-autocomplete [items]="currencyCodes"
-                      item-text="name"
+          <md2-autocomplete [items]="currency"
+                      item-text="currency"
                       (change)="handleChange($event)"
                     placeholder="Currency purchased">
           </md2-autocomplete>
