@@ -12,22 +12,12 @@ import { NameListService } from '../shared/name-list/name-list.service';
   styleUrls: ['home.component.css'],
 })
 export class HomeComponent implements OnInit {
-    currencyCodes: Array<any> = [
-    { name: 'UAE Dirham', value: '19' },
-    { name: 'Dollar', value: '65' },
-    { name: 'Australian dollar', value: '63' },
-    { name: 'Riyal', value: '25' },
-    { name: 'Yen', value: '80' }
-    ];
-   item: any;
-   currency:any;
+  errorMessage:any;
+  currency:any;
   selectedValue: string;
-  currencyValue:any;
-   foods = [
-     {value: 'steak-0', viewValue: 'Steak'},
-     {value: 'pizza-1', viewValue: 'Pizza'},
-     {value: 'tacos-2', viewValue: 'Tacos'}
-   ];
+  foods = [
+     {value: '1', viewValue: 'CN & Coins'},
+  ];
 
    rows = [
    { currency: 'Dirham', type: 'CN & Coins', amount: 1000, rate: 14,rupee:15000  },
@@ -41,19 +31,21 @@ export class HomeComponent implements OnInit {
    { name: 'Rate' },
    { name: 'Rupee' }
    ];
-  /**
-   * Creates an instance of the HomeComponent with the injected
-   * NameListService.
-   *
-   * @param {NameListService} nameListService - The injected NameListService.
-   */
-  constructor() {
+   constructor(public nameListService: NameListService) {
     this.currency = {};
   }
 
     ngOnInit() {
-
+    this.getCurrency();
     }
+
+    getCurrency() {
+   this.nameListService.get()
+     .subscribe(
+       currency => this.currency = currency,
+       error => this.errorMessage = <any>error
+     );
+ }
     handleChange(value: any) {
       console.log('Changed data: ', value);
       this.currencyValue = value.value.value;
