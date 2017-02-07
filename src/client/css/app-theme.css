@@ -1,0 +1,23 @@
+md-toolbar.md-primary
+{
+	background-color:#43A047 !important;
+	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.13), 0 1px 2px 0 rgba(0, 0, 0, 0.24)  !important;
+}
+.md-checkbox-checked.md-accent .md-checkbox-background,
+.md-progress-bar-fill::after, [md-raised-button].md-primary, 
+[md-fab], md-ink-bar
+{
+	background-color: #43A047  !important;
+}
+.md-input-underline .md-input-ripple
+{
+	background-color: #43A047  !important;
+}
+.md-input-placeholder.md-focused
+{
+	color: #43A047 !important;
+}
+[md-mini-fab].md-accent
+{
+	background: #43A047  !important;
+}

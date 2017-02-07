@@ -4,10 +4,11 @@ import { LoginComponent } from './login.component';
 import { LoginRoutingModule } from './login-routing.module';
 import { MaterialModule } from '@angular/material';
 import { FormsModule }   from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
-    CommonModule,LoginRoutingModule, FormsModule, MaterialModule.forRoot()
+    CommonModule,LoginRoutingModule, FormsModule, MaterialModule.forRoot(), FlexLayoutModule.forRoot()
   ],
   declarations: [LoginComponent],
   exports: [LoginComponent]

@@ -20,7 +20,7 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem("user");
-    this._router.navigate(['Login']);
+    this._router.navigate(['login']);
   }
 
   login(user: User){

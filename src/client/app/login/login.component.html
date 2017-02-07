@@ -1,3 +1,10 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <md-card class="login_form" fxLayout="column" fxLayoutAlign="center center" fxFlex="30%">
+        
+        <div class="input_div">
+            <md-input [(ngModel)]="user.email" id="email" 
+                    type="email" placeholder="admin@admin.com" class="validate"></md-input>
+        </div>
 
 <div>
   <md-card class="register_form" style="height:600px;">
@@ -26,5 +33,8 @@
                     type="submit" name="action">Login</button>
             </div>
         </div>
-  </md-card>
+
+        <span>{{errorMsg}}</span>
+            
+    </md-card>
 </div>
