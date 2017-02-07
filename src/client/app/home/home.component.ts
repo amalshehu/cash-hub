@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { NameListService } from '../shared/name-list/name-list.service';
 
 /**
@@ -29,14 +30,16 @@ export class HomeComponent implements OnInit {
    ];
 
    rows = [
-   { name: 'Austin', gender: 'Male', company: 'Swimlane' },
+   { currency: 'Dirham', type: 'CN & Coins', amount: 1000, rate: 14,rupee:15000  },
    { name: 'Dany', gender: 'Male', company: 'KFC' },
    { name: 'Molly', gender: 'Female', company: 'Burger King' },
    ];
    columns = [
-   { prop: 'name' },
-   { name: 'Gender' },
-   { name: 'Company' }
+   { prop: 'currency' },
+   { name: 'Type' },
+   { name: 'Amount' },
+   { name: 'Rate' },
+   { name: 'Rupee' }
    ];
   /**
    * Creates an instance of the HomeComponent with the injected
