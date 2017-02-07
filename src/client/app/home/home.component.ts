@@ -11,8 +11,17 @@ import { NameListService } from '../shared/name-list/name-list.service';
   styleUrls: ['home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
+    currencyCodes: Array<any> = [
+    { name: 'UAE Dirham', value: '19' },
+    { name: 'Dollar', value: '65' },
+    { name: 'Australian dollar', value: '63' },
+    { name: 'Riyal', value: '25' },
+    { name: 'Yen', value: '80' }
+    ];
+   item: any;
+   currency:any;
   selectedValue: string;
+  currencyValue:any;
    foods = [
      {value: 'steak-0', viewValue: 'Steak'},
      {value: 'pizza-1', viewValue: 'Pizza'},
@@ -35,10 +44,16 @@ export class HomeComponent implements OnInit {
    *
    * @param {NameListService} nameListService - The injected NameListService.
    */
-  constructor() {}
+  constructor() {
+    this.currency = {};
+  }
 
     ngOnInit() {
 
+    }
+    handleChange(value: any) {
+      console.log('Changed data: ', value);
+      this.currencyValue = value.value.value;
     }
 
   }

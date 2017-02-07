@@ -59,18 +59,21 @@
             </md-input-container>
           </td>
           <td>
-          <md-select placeholder="Nationality" [(ngModel)]="selectedValue" name="food">
-            <md-option *ngFor="let food of foods" [value]="food.value">
-              {{food.viewValue}}
-            </md-option>
-          </md-select>
+            <md2-autocomplete [items]="items"
+                      item-text="name"
+                      item-value="value"
+                      placeholder="Nationality">
+            </md2-autocomplete>
         </td>
+
+
+
         <td>
-        <md-select placeholder="Currency Purchased" [(ngModel)]="selectedValue" name="food">
-          <md-option *ngFor="let food of foods" [value]="food.value">
-            {{food.viewValue}}
-          </md-option>
-        </md-select>
+          <md2-autocomplete [items]="currencyCodes"
+                      item-text="name"
+                      (change)="handleChange($event)"
+                    placeholder="Currency purchased">
+          </md2-autocomplete>
       </td>
       <td>
       <md-select placeholder="Currency Type" [(ngModel)]="selectedValue" name="food">
@@ -86,7 +89,7 @@
         <input md-input placeholder="Amount">
       </md-input-container>
       <md-input-container >
-        <input md-input placeholder="Present Rate">
+        <input md-input placeholder="Present Rate" >
       </md-input-container>
       <md-input-container >
         <input md-input placeholder="Rupee Equivalent">

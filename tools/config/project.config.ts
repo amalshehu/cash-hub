@@ -51,6 +51,11 @@ export class ProjectConfig extends SeedConfig {
       name: '@swimlane/ngx-datatable',
       // Path to the package's bundle
       path: 'node_modules/@swimlane/ngx-datatable/release/index.js'
+    },
+    {
+      name: 'md2',
+      // Path to the package's bundle
+      path: 'node_modules/md2/bundles/md2.umd.js'
     }];
 
     this.addPackagesBundles(additionalPackages);
