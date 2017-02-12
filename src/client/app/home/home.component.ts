@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output, Inject } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NameListService } from '../shared/name-list/name-list.service';
 import { Currency } from '../currency.interface';
 /**
@@ -12,7 +11,6 @@ import { Currency } from '../currency.interface';
   styleUrls: ['home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  public myForm: FormGroup;
 
   errorMessage:any;
   currency:any;
@@ -34,35 +32,17 @@ export class HomeComponent implements OnInit {
    dataModel:any;
    presentRate = '';
    constructor(
-     public nameListService: NameListService,
-     private fb: FormBuilder) {
+     public nameListService: NameListService) {
        this.dataModel = {};
-       this.myForm = fb.group({
-             name: ['', [Validators.required, Validators.minLength(2)]],
-             date: ['', [Validators.required, Validators.minLength(2)]],
-             address: ['', [Validators.required, Validators.minLength(2)]],
-             remarks: ['', [Validators.required, Validators.minLength(2)]],
-             serialNumber: ['', [Validators.required, Validators.minLength(1)]],
-             idNumber: ['', [Validators.required, Validators.minLength(2)]],
-             phoneNumber: ['', [Validators.required, Validators.minLength(2)]],
-             mobileNumber: ['', [Validators.required, Validators.minLength(2)]],
-             nationality: [''],
-             totalCost: ['', [Validators.minLength(0)]],
-             tax: ['', [Validators.minLength(2)]],
-             taxAmount: ['', [Validators.minLength(2)]],
-             grandTotal: ['', [Validators.minLength(2)]],
-             items: fb.array([
-                 this.initItem(),
-             ])
-         });
-
-     this.currency = {};
+       this.dataModel.currency = {};
+       this.currency = {};
   }
 
     ngOnInit() {
 
     this.getCurrency();
     }
+
     initItem() {
       return this.fb.group({
           currencyName: [''],
@@ -96,6 +76,7 @@ export class HomeComponent implements OnInit {
   }
   handleChange(value: any) {
     console.log('Changed data: ', value);
+
     if (value) {
       this.presentRate = value.value.rate;
   }
