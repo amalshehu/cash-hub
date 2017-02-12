@@ -48,17 +48,17 @@
         <tr>
           <td>
             <md-input-container >
-              <input md-input placeholder="Phone No." FormControlName="phoneNumber">
+              <input md-input placeholder="Phone No." formControlName="phoneNumber">
             </md-input-container>
           </td>
           <td>
             <md-input-container >
-              <input md-input placeholder="Mobile No." FormControlName="mobileNumber">
+              <input md-input placeholder="Mobile No." formControlName="mobileNumber">
             </md-input-container>
           </td>
           <td>
             <md2-autocomplete
-            [items]="currency.name"
+            [items]="currency"
                       item-text="name"
                       (change)="change($event)"
                       placeholder="Nationality"
@@ -66,42 +66,53 @@
             </md2-autocomplete>
         </td>
         <td>
-          <md2-autocomplete [items]="currency"
-                    item-text="currency"
-                    (change)="handleChange($event)"
-                    placeholder="Currency purchased"
-                    FormControlName="totalCost"
-                    >
-          </md2-autocomplete>
+
       </td>
       <td>
-      <md-select placeholder="Currency Type" name="food" FormControlName="currencyType">
-        <md-option *ngFor="let food of foods" [value]="food.value" FormControlName="currencyType">
-          {{food.viewValue}}
-        </md-option>
-      </md-select>
+        <div formArrayName="items">
+           <div *ngFor="let item of myForm.controls.items.controls; let i=index">
+               <div [formGroupName]="i">
+                 <md2-autocomplete [items]="currency"
+                           item-text="currency"
+                           (change)="handleChange($event)"
+                           placeholder="Currency purchased"
+                           formControlName="currencyName"
+                           >
+                 </md2-autocomplete>
+                 <md-input-container >
+                   <input md-input placeholder="Present rate" [value]="presentRate" formControlName="presentRate"  >
+                 </md-input-container>
+                 <md-select placeholder="Currency Type" name="cTypes" formControlName="currencyType">
+                   <md-option *ngFor="let currencyType of cTypes" [value]="currencyType.viewValue">
+                     {{currencyType.viewValue}}
+                   </md-option>
+                 </md-select>
+               </div>
+           </div>
+        </div>
+
+
+
+
     </td>
         </tr>
       </table>
 
       <md-input-container >
-        <input md-input placeholder="Amount" FormControlName="totalCost">
+        <input md-input placeholder="Amount" >
       </md-input-container>
       <md-input-container >
-        <input md-input placeholder="Present Rate" FormControlName="presentRate" >
-      </md-input-container>
-      <md-input-container >
-        <input md-input placeholder="Rupee Equivalent" FormControlName="amount">
+        <input md-input placeholder="Rupee Equivalent" >
       </md-input-container>
 
       <md-input-container >
-        <input md-input placeholder="Tax %" value="14" FormControlName="tax">
+        <input md-input placeholder="Tax %" value="14" formControlName="tax">
       </md-input-container>
       <md-input-container >
-        <input md-input placeholder="Tax Amount"  value="Tax" FormControlName="taxAmount">
+        <input md-input placeholder="Tax Amount"  value="Tax" formControlName="taxAmount">
       </md-input-container>
       <md-input-container >
-        <input md-input placeholder="Grand Total"  value="Total" FormControlName="grandTotal">
+        <input md-input placeholder="Grand Total"  value="Total" formControlName="grandTotal">
       </md-input-container>
 
 
