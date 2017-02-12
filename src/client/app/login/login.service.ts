@@ -9,7 +9,7 @@ export class User {
 
 var users:User[] = [
   new User('admin@admin.com','adm9'),
-  new User('user1@gmail.com','a23')
+  new User('','')
 ];
 
 @Injectable()

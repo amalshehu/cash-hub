@@ -8,10 +8,11 @@ import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { Md2Module }  from 'md2';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [CommonModule, HomeRoutingModule, SharedModule, MaterialModule.forRoot(),
-    FlexLayoutModule.forRoot(), NgxDatatableModule, Md2Module.forRoot()],
+    FlexLayoutModule.forRoot(), NgxDatatableModule, Md2Module.forRoot(), ReactiveFormsModule],
   declarations: [HomeComponent],
   exports: [HomeComponent],
   providers: [NameListService]

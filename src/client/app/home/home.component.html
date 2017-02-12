@@ -1,44 +1,42 @@
 <div fxLayout="row" fxLayoutAlign="center center">
   <md-card class="card_align" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="space-between center" fxFlex="85%" style="height:620px;">
 
-    <form class="example-form">
+    <form class="example-form" [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
       <md-input-container>
-        <input md-input placeholder="Cash Hub" disabled value="Serial Number">
+        <input md-input placeholder="Cash Hub" value="Serial Number" formControlName="serialNumber">
 
       </md-input-container>
       <table >
         <tr>
           <td>
             <md-input-container>
-              <input md-input placeholder="Name">
+              <input md-input placeholder="Name" formControlName="name">
             </md-input-container>
 
           </td>
           <td>
-            <md-input-container >
-              <input type="date" md-input placeholder="Date">
-            </md-input-container>
+            <md2-datepicker formControlName="date"></md2-datepicker>
+
           </td>
         </tr>
       </table>
       <div class="register_card" fxFlex="45%">
       <p>
         <md-input-container>
-          <textarea md-input placeholder="Address"></textarea>
+          <textarea md-input placeholder="Address" formControlName="address"></textarea>
         </md-input-container>
 
         <md-input-container >
-          <textarea md-input placeholder="Remarks"></textarea>
+          <textarea md-input placeholder="Remarks" formControlName="remarks"></textarea>
         </md-input-container>
       </p>
     </div>
-
       <table >
         <tr>
 
           <td>
             <md-input-container >
-              <input md-input placeholder="ID Card No.">
+              <input md-input placeholder="ID Card No." formControlName="idNumber">
             </md-input-container>
           </td>
 
@@ -50,34 +48,35 @@
         <tr>
           <td>
             <md-input-container >
-              <input md-input placeholder="Phone No.">
+              <input md-input placeholder="Phone No." FormControlName="phoneNumber">
             </md-input-container>
           </td>
           <td>
             <md-input-container >
-              <input md-input placeholder="Mobile No.">
+              <input md-input placeholder="Mobile No." FormControlName="mobileNumber">
             </md-input-container>
           </td>
           <td>
-            <md2-autocomplete [items]="currency"
+            <md2-autocomplete
+            [items]="currency.name"
                       item-text="name"
-                      item-value="id"
-                      placeholder="Nationality">
+                      (change)="change($event)"
+                      placeholder="Nationality"
+                      >
             </md2-autocomplete>
         </td>
-
-
-
         <td>
           <md2-autocomplete [items]="currency"
-                      item-text="currency"
-                      (change)="handleChange($event)"
-                    placeholder="Currency purchased">
+                    item-text="currency"
+                    (change)="handleChange($event)"
+                    placeholder="Currency purchased"
+                    FormControlName="totalCost"
+                    >
           </md2-autocomplete>
       </td>
       <td>
-      <md-select placeholder="Currency Type" [(ngModel)]="selectedValue" name="food">
-        <md-option *ngFor="let food of foods" [value]="food.value">
+      <md-select placeholder="Currency Type" name="food" FormControlName="currencyType">
+        <md-option *ngFor="let food of foods" [value]="food.value" FormControlName="currencyType">
           {{food.viewValue}}
         </md-option>
       </md-select>
@@ -86,23 +85,23 @@
       </table>
 
       <md-input-container >
-        <input md-input placeholder="Amount">
+        <input md-input placeholder="Amount" FormControlName="totalCost">
       </md-input-container>
       <md-input-container >
-        <input md-input placeholder="Present Rate" >
+        <input md-input placeholder="Present Rate" FormControlName="presentRate" >
       </md-input-container>
       <md-input-container >
-        <input md-input placeholder="Rupee Equivalent">
+        <input md-input placeholder="Rupee Equivalent" FormControlName="amount">
       </md-input-container>
 
       <md-input-container >
-        <input md-input placeholder="Tax %" value="14">
+        <input md-input placeholder="Tax %" value="14" FormControlName="tax">
       </md-input-container>
       <md-input-container >
-        <input md-input placeholder="Tax Amount" disabled value="Tax">
+        <input md-input placeholder="Tax Amount"  value="Tax" FormControlName="taxAmount">
       </md-input-container>
       <md-input-container >
-        <input md-input placeholder="Grand Total" disabled value="Total">
+        <input md-input placeholder="Grand Total"  value="Total" FormControlName="grandTotal">
       </md-input-container>
 
 
@@ -112,7 +111,7 @@
           </ngx-datatable>
      </div>
 
-      <button md-raised-button color="primary" >Save</button>
+      <button md-raised-button color="primary" type="submit" >Save</button>
       <button md-raised-button color="warn">Remove selected currency</button>
       <button md-raised-button color="primary">Add</button>
       <button md-raised-button color="accent">Edit</button>

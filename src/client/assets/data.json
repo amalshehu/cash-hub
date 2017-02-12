@@ -1,1 +1,190 @@
-[{"_id":"58970bb06ae9c8e753cf6fa0","id":3,"name":"Qatar","code":"QAR","currency":"Qatar Riyal","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.720Z"},{"_id":"58970bb06ae9c8e753cf6fa1","id":2,"name":"Saudi Arabia","code":"SAR","currency":"Saudi Riyal","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.724Z"},{"_id":"58970bb06ae9c8e753cf6fa2","id":4,"name":"Baharin ","code":"BHD","currency":"Baharin Dinar","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.725Z"},{"_id":"58970bb06ae9c8e753cf6fa3","id":5,"name":"Oman","code":"OMR","currency":"Oman Riyal","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.725Z"},{"_id":"58970bb06ae9c8e753cf6fa4","id":6,"name":"America","code":"USD","currency":"US Dollars","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.725Z"},{"_id":"58970bb06ae9c8e753cf6fa5","id":7,"name":"Singapore ","code":"SGD","currency":"Singapore Dollar","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.725Z"},{"_id":"58970bb06ae9c8e753cf6fa6","id":8,"name":"Australia","code":"ASD","currency":"Australian Dollar","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.725Z"},{"_id":"58970bb06ae9c8e753cf6fa7","id":10,"name":"Sweeden","code":"CHF","currency":"Swiss Franc","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.725Z"},{"_id":"58970bb06ae9c8e753cf6fa8","id":11,"name":"Europe","code":"EURO","currency":"EURO","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.725Z"},{"_id":"58970bb06ae9c8e753cf6fa9","id":12,"name":"England","code":"GBP","currency":"Sterlling Pound","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.725Z"},{"_id":"58970bb06ae9c8e753cf6faa","id":13,"name":"Japan ","code":"YEN","currency":"YEN","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.725Z"},{"_id":"58970bb06ae9c8e753cf6fab","id":14,"name":"Canada","code":"CAD","currency":"Canadian Dollar","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.725Z"},{"_id":"58970bb06ae9c8e753cf6fac","id":15,"name":"India","code":"IND","currency":"Rupee","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.725Z"},{"_id":"58970bb06ae9c8e753cf6fad","id":9,"name":"Kuwait","code":"KD","currency":"Kuwiat Dinar","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.725Z"},{"_id":"58970bb06ae9c8e753cf6fae","id":18,"name":"Sweeden","code":"Korner","currency":"Korner","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.726Z"},{"_id":"58970bb06ae9c8e753cf6faf","id":19,"name":"Switzer Land","code":"SF","currency":"Swiss Franc","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.726Z"},{"_id":"58970bb06ae9c8e753cf6fb0","id":16,"name":"Malayasia","code":"MR","currency":"Malayasia Ringitte","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.726Z"},{"_id":"58970bb06ae9c8e753cf6fb1","id":21,"name":"South Africa","code":"SAF","currency":"Rand","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.726Z"},{"_id":"58970bb06ae9c8e753cf6fb2","id":20,"name":"Brunei","code":"Brunei","currency":"Brunei Dollar","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.727Z"},{"_id":"58970bb06ae9c8e753cf6fb3","id":17,"name":"New Zealand","code":"NZD","currency":"New Zealand Dolar","rate":null,"status":null,"createdAt":"2017-02-07T16:59:53.727Z"},{"_id":"58970bb06ae9c8e753cf6fb4","id":1,"name":"United Arab Emirates","code":"UAE","currency":"Dirham","rate":19,"status":null,"createdAt":"2017-02-07T16:59:53.728Z"}]
+[{
+  "_id": "58970bb06ae9c8e753cf6fa0",
+  "id": 3,
+  "name": "Qatar",
+  "code": "QAR",
+  "currency": "Qatar Riyal",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.720Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fa1",
+  "id": 2,
+  "name": "Saudi Arabia",
+  "code": "SAR",
+  "currency": "Saudi Riyal",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.724Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fa2",
+  "id": 4,
+  "name": "Baharin ",
+  "code": "BHD",
+  "currency": "Baharin Dinar",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.725Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fa3",
+  "id": 5,
+  "name": "Oman",
+  "code": "OMR",
+  "currency": "Oman Riyal",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.725Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fa4",
+  "id": 6,
+  "name": "America",
+  "code": "USD",
+  "currency": "US Dollars",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.725Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fa5",
+  "id": 7,
+  "name": "Singapore ",
+  "code": "SGD",
+  "currency": "Singapore Dollar",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.725Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fa6",
+  "id": 8,
+  "name": "Australia",
+  "code": "ASD",
+  "currency": "Australian Dollar",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.725Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fa7",
+  "id": 10,
+  "name": "Sweeden",
+  "code": "CHF",
+  "currency": "Swiss Franc",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.725Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fa8",
+  "id": 11,
+  "name": "Europe",
+  "code": "EURO",
+  "currency": "EURO",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.725Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fa9",
+  "id": 12,
+  "name": "England",
+  "code": "GBP",
+  "currency": "Sterlling Pound",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.725Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6faa",
+  "id": 13,
+  "name": "Japan ",
+  "code": "YEN",
+  "currency": "YEN",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.725Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fab",
+  "id": 14,
+  "name": "Canada",
+  "code": "CAD",
+  "currency": "Canadian Dollar",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.725Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fac",
+  "id": 15,
+  "name": "India",
+  "code": "IND",
+  "currency": "Rupee",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.725Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fad",
+  "id": 9,
+  "name": "Kuwait",
+  "code": "KD",
+  "currency": "Kuwiat Dinar",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.725Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fae",
+  "id": 18,
+  "name": "Sweeden",
+  "code": "Korner",
+  "currency": "Korner",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.726Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6faf",
+  "id": 19,
+  "name": "Switzer Land",
+  "code": "SF",
+  "currency": "Swiss Franc",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.726Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fb0",
+  "id": 16,
+  "name": "Malayasia",
+  "code": "MR",
+  "currency": "Malayasia Ringitte",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.726Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fb1",
+  "id": 21,
+  "name": "South Africa",
+  "code": "SAF",
+  "currency": "Rand",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.726Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fb2",
+  "id": 20,
+  "name": "Brunei",
+  "code": "Brunei",
+  "currency": "Brunei Dollar",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.727Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fb3",
+  "id": 17,
+  "name": "New Zealand",
+  "code": "NZD",
+  "currency": "New Zealand Dolar",
+  "rate": null,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.727Z"
+}, {
+  "_id": "58970bb06ae9c8e753cf6fb4",
+  "id": 1,
+  "name": "United Arab Emirates",
+  "code": "UAE",
+  "currency": "Dirham",
+  "rate": 19,
+  "status": null,
+  "createdAt": "2017-02-07T16:59:53.728Z"
+}]
