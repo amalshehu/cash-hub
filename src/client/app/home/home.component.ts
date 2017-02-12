@@ -18,8 +18,8 @@ export class HomeComponent implements OnInit {
   currency:any;
   currencyValue:any;
   selectedValue: string;
-  foods = [
-     {value: '1', viewValue: 'CN & Coins'},
+  cTypes = [
+     {value: '1', viewValue: 'CN & Coins'}
   ];
    rows = [
    { currency: 'Dirham', type: 'CN & Coins', amount: 1000, rate: 14,rupee:15000  }
@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
    { name: 'Rupee' }
    ];
    dataModel:any;
+   presentRate = '';
    constructor(
      public nameListService: NameListService,
      private fb: FormBuilder) {
@@ -64,10 +65,10 @@ export class HomeComponent implements OnInit {
     }
     initItem() {
       return this.fb.group({
-          currencyName: ['', Validators.required],
+          currencyName: [''],
           currencyType: [''],
-          amount: ['', Validators.required],
-          presentRate:[''],
+          amount: [''],
+          presentRate:this.myForm,
           total:['']
       });
   }
@@ -95,13 +96,14 @@ export class HomeComponent implements OnInit {
   }
   handleChange(value: any) {
     console.log('Changed data: ', value);
-    this.myForm.controls['nationality'].setValue(value.name);
-
+    if (value) {
+      this.presentRate = value.value.rate;
   }
+}
   change(value: any) {
     console.log('Changed datassds: ', value);
-    let name = value.value;
-    this.myForm.controls['nationality'].setValue(name);
+    // let name = value.value;
+    // this.myForm.controls['nationality'].setValue(name);
 
   }
 }
