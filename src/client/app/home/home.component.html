@@ -78,11 +78,17 @@
                <div [formGroupName]="i">
                  <md2-autocomplete [items]="currency"
                            item-text="currency"
-                           (change)="handleChange($event)"
+                           (change)="handleChange($event, i)"
                            placeholder="Currency purchased"
                            formControlName="currencyName"
                            >
                  </md2-autocomplete>
+
+                 <md-autocomplete #tdAuto="mdAutocomplete">
+     <md-option *ngFor="let c of curreny" [value]="c.name">
+       <span>{{ c.name }}</span>
+     </md-option>
+   </md-autocomplete>
                  <md-input-container >
                    <input md-input placeholder="Present rate" [value]="presentRate" formControlName="presentRate"  >
                  </md-input-container>
