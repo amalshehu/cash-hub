@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, Inject } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NameListService } from '../shared/name-list/name-list.service';
 import { Currency } from '../currency.interface';
 /**
@@ -94,11 +94,16 @@ export class HomeComponent implements OnInit {
      error => this.errorMessage = <any>error
    );
   }
-  handleChange(value: any) {
-    console.log('Changed data: ', value);
-    if (value) {
-      this.presentRate = value.value.rate;
-  }
+  handleChange($event: any, i: index) {
+  // const control: AbstractControl = this.myForm.get(`items.${i}.currencyName`);
+  // control.patchValue('_value');
+
+  this.myForm.get(`items.${i}.currencyName`).valueChanges
+.subscribe(val =>
+  this.myForm.get(`items.${i}.presentRate`).updateValueAndValidity(val)
+);
+
+  debugger
 }
   change(value: any) {
     console.log('Changed datassds: ', value);
