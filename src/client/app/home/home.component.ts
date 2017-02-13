@@ -55,7 +55,6 @@ export class HomeComponent implements OnInit {
                  this.initItem(),
              ])
          });
-
      this.currency = {};
   }
 
@@ -65,11 +64,12 @@ export class HomeComponent implements OnInit {
     }
     initItem() {
       return this.fb.group({
+          currency: [''],
           currencyName: [''],
           currencyType: [''],
-          amount: [''],
-          presentRate:this.myForm,
-          total:['']
+          amount: [],
+          presentRate:[''],
+          total:[]
       });
   }
 
@@ -82,10 +82,15 @@ export class HomeComponent implements OnInit {
       const control = <FormArray>this.myForm.controls['items'];
       control.removeAt(i);
   }
-  save(model: Currency) {
+  save(model:any, i: index) {
+    // const control3: AbstractControl = this.myForm.get(`items.${i}.amount`);
+    // const control4: AbstractControl = this.myForm.get(`items.${i}.total`);
+    // let total = control3.value;
+    // console.log(total);
+    // control4.patchValue(total);
         // call API to save
         // ...
-        console.log(model);
+        console.log(model.value);
     }
   getCurrency() {
     this.nameListService.get()
@@ -95,20 +100,28 @@ export class HomeComponent implements OnInit {
    );
   }
   handleChange($event: any, i: index) {
-  // const control: AbstractControl = this.myForm.get(`items.${i}.currencyName`);
-  // control.patchValue('_value');
+  console.log($event)
+  const control: AbstractControl = this.myForm.get(`items.${i}.presentRate`);
+  const control2: AbstractControl = this.myForm.get(`items.${i}.currencyName`);
 
-  this.myForm.get(`items.${i}.currencyName`).valueChanges
-.subscribe(val =>
-  this.myForm.get(`items.${i}.presentRate`).updateValueAndValidity(val)
-);
 
-  debugger
+  let currencyRate: any;
+  let currencyName:any;
+  if ($event.value) {
+    currencyName = $event.value.currency;
+    currencyRate = $event.value.rate;
+  } else {
+    currencyRate = '';
+    currencyName = '';
+  }
+  control.patchValue(currencyRate);
+  control2.patchValue(currencyName);
+
 }
   change(value: any) {
     console.log('Changed datassds: ', value);
     // let name = value.value;
     // this.myForm.controls['nationality'].setValue(name);
-
   }
+
 }
