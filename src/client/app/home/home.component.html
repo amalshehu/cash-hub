@@ -1,21 +1,21 @@
 <div fxLayout="row" fxLayoutAlign="center center">
   <md-card class="card_align" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="space-between center" fxFlex="85%" style="height:620px;">
 
-    <form class="example-form" [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
+    <form class="example-form" >
       <md-input-container>
-        <input md-input placeholder="Cash Hub" value="Serial Number" formControlName="serialNumber">
+        <input md-input placeholder="Cash Hub" value="Serial Number" [(ngmodel)]="serialNumber">
 
       </md-input-container>
       <table >
         <tr>
           <td>
             <md-input-container>
-              <input md-input placeholder="Name" formControlName="name">
+              <input md-input placeholder="Name" [(ngmodel)]="dataModel.name">
             </md-input-container>
 
           </td>
           <td>
-            <md2-datepicker formControlName="date"></md2-datepicker>
+            <md2-datepicker [(ngmodel)]="date"></md2-datepicker>
 
           </td>
         </tr>
@@ -23,11 +23,11 @@
       <div class="register_card" fxFlex="45%">
       <p>
         <md-input-container>
-          <textarea md-input placeholder="Address" formControlName="address"></textarea>
+          <textarea md-input placeholder="Address" [(ngmodel)]="dataModel.address"></textarea>
         </md-input-container>
 
         <md-input-container >
-          <textarea md-input placeholder="Remarks" formControlName="remarks"></textarea>
+          <textarea md-input placeholder="Remarks" [(ngmodel)]="dataModel.remarks"></textarea>
         </md-input-container>
       </p>
     </div>
@@ -36,7 +36,7 @@
 
           <td>
             <md-input-container >
-              <input md-input placeholder="ID Card No." formControlName="idNumber">
+              <input md-input placeholder="ID Card No." [(ngmodel)]="dataModel.idNumber">
             </md-input-container>
           </td>
 
@@ -48,11 +48,14 @@
         <tr>
           <td>
             <md-input-container >
+
               <input md-input placeholder="Phone No." formControlName="phoneNumber">
+
             </md-input-container>
           </td>
           <td>
             <md-input-container >
+
               <input md-input placeholder="Mobile No." formControlName="mobileNumber">
             </md-input-container>
           </td>
@@ -62,6 +65,7 @@
                       item-text="name"
                       (change)="change($event)"
                       placeholder="Nationality"
+                      [(ngModel)]="dataModel.nationality"
                       >
             </md2-autocomplete>
         </td>
@@ -98,13 +102,12 @@
         </div>
 
 
-
-
     </td>
         </tr>
       </table>
 
       <md-input-container >
+
         <input md-input placeholder="Amount" >
       </md-input-container>
       <md-input-container >
@@ -119,6 +122,7 @@
       </md-input-container>
       <md-input-container >
         <input md-input placeholder="Grand Total"  value="Total" formControlName="grandTotal">
+
       </md-input-container>
 
 

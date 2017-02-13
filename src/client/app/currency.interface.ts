@@ -20,5 +20,4 @@ export interface Item {
   currencyType: string;
   amount: number;
   presentRate:number;
-  total:number;
 }
