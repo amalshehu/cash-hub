@@ -18,6 +18,11 @@ export class HomeComponent implements OnInit {
   currency:any;
   currencyValue:any;
   selectedValue: string;
+  items:any = [];
+  item :any= {};
+  temp:any={};
+  temps:any=[];
+
   cTypes = [
      {value: '1', viewValue: 'CN & Coins'}
   ];
@@ -47,8 +52,8 @@ export class HomeComponent implements OnInit {
              phoneNumber: ['', [Validators.required, Validators.minLength(2)]],
              mobileNumber: ['', [Validators.required, Validators.minLength(2)]],
              nationality: [''],
-             totalCost: ['', [Validators.minLength(0)]],
              tax: ['', [Validators.minLength(2)]],
+             totalCost: ['', [Validators.minLength(2)]],
              taxAmount: ['', [Validators.minLength(2)]],
              grandTotal: ['', [Validators.minLength(2)]],
              items: fb.array([
@@ -56,11 +61,13 @@ export class HomeComponent implements OnInit {
              ])
          });
      this.currency = {};
+
   }
 
     ngOnInit() {
 
     this.getCurrency();
+
     }
     initItem() {
       return this.fb.group({
@@ -123,5 +130,69 @@ export class HomeComponent implements OnInit {
     // let name = value.value;
     // this.myForm.controls['nationality'].setValue(name);
   }
+  loadProducts(){
+      this.http.get("/products").map(res => res.json()).subscribe(
+        data => this.products = data,
+        error => console.log(error)
+      );
+    }
+
+   onBlurMethod(i) {
+    this.http.get("/productssss/"+this.myForm.value.products[i].productName).map(res => res.json()).subscribe(
+        data =>{ this.seas = data;
+
+         this.myForm.value.products[i].cost=this.seas.pcost;
+
+          },
+        error => console.log(error)
+     );
+  }
+
+
+  BlurMethod(i){
+    this.http.get("/productssss/"+this.myForm.value.products[i].productName).map(res => res.json()).subscribe(
+        data =>{ this.seas = data;
+      this.myForm.value.products[i].cost=this.seas.pcost;
+         this.myForm.value.products[i].total=this.seas.pcost*this.myForm.value.products[i].quantity;
+
+          },
+        error => console.log(error)
+     );
+
+  }
+   getTax() {
+     var tax = this.myForm.value.tax=10;
+     return tax;
+   }
+   getRupee() {
+     let rate = this.myForm.value.items[0].presentRate;
+     let amount = this.myForm.value.items[0].amount;
+     if (rate && amount) {
+        var rupee = rate * amount ;
+     }
+     return rupee;
+   }
+   getTaxAmount() {
+     if (this.myForm.value.items[0].amount) {
+       return this.myForm.get('items[0].amount').valueChanges
+           .subscribe(val => {
+             this.myForm.get('taxAmount').updateValueAndValidity(val * 11 )
+           }
+     );
+     }
+     return null;
+   }
+
+   getTotal() {
+     var total = 0;
+     for(var i = 0; i === this.myForm.value.items.length; i++) {
+        var item = this.myForm.value.items[i];
+        total += (item.amount * item.presentRate);
+        this.myForm.controls['totalCost'].setValue(total);
+        this.myForm.controls['grandTotal']
+        .setValue(this.myForm.value.totalCost+this.myForm.value.totalCost*(this.myForm.value.tax/100))
+      }
+      return total;
+    }
 
 }
