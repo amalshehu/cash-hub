@@ -16,21 +16,45 @@
   </md-input-container>
           <md-input-container class="example-full-width">
             <input mdInput placeholder="Name" formControlName="name">
+            <span md-prefix>
+            <i class="material-icons app-input-icon">&#xE85E;</i>
+              &nbsp;
+            </span>
           </md-input-container>
           <md-input-container class="example-full-width2" >
             <textarea mdInput placeholder="Address" formControlName="address"></textarea>
+            <span md-prefix>
+            <i class="material-icons app-input-icon">business</i>
+              &nbsp;
+            </span>
           </md-input-container>
           <md-input-container class="example-full-width2">
             <textarea mdInput placeholder="Remarks" formControlName="remarks"></textarea>
+            <span md-prefix>
+            <i class="material-icons app-input-icon">note</i>
+              &nbsp;
+            </span>
           </md-input-container>
           <md-input-container class="example-full-width2">
             <input mdInput placeholder="Phone No." formControlName="phoneNumber">
+            <span md-prefix>
+            <i class="material-icons app-input-icon">phone</i>
+              &nbsp;
+            </span>
           </md-input-container>
           <md-input-container class="example-full-width2">
             <input mdInput placeholder="Mobile No." formControlName="mobileNumber">
+            <span md-prefix>
+            <i class="material-icons app-input-icon">phone_android</i>
+              &nbsp;
+            </span>
           </md-input-container>
           <md-input-container class="example-full-width2">
             <input mdInput placeholder="ID Card No." formControlName="idNumber">
+            <span md-prefix>
+            <i class="material-icons app-input-icon">fingerprint</i>
+              &nbsp;
+            </span>
           </md-input-container>
         </md-card>
       </div>
@@ -38,6 +62,7 @@
       <div class="flex-item" fxFlex="50%">
         <md-card >
           <md2-datepicker formControlName="date"></md2-datepicker>
+
           <md2-autocomplete
           [items]="currency"
                     item-text="name"
@@ -45,7 +70,9 @@
                     placeholder="Nationality"
                     formControlName="nationality"
                     >
+
           </md2-autocomplete>
+
           <div formArrayName="items">
 
              <div *ngFor="let item of myForm.controls.items.controls; let i=index">
@@ -101,8 +128,8 @@
                <input mdInput placeholder="Grand Total"  formControlName="grandTotal" >
              </md-input-container>
            </div>
-          <div class="flex-item" fxFlex="30px" fxLayout="row" fxFlex.xs="40%">
-            <button md-raised-button color="primary" type="submit" >Save</button>
+          <div class="flex-item" fxFlex >
+            <button md-raised-button color="primary" type="submit" >Save</button >
             <button md-raised-button color="warn">Remove selected currency</button>
             <button md-raised-button color="primary" (click)="addItem(i)">Add</button>
             <button md-raised-button color="accent">Edit</button>

@@ -4,7 +4,9 @@
 
 /* Reset */
 html,
-body,
+body{
+  background-color: #F5F5F5;
+  },
 div {
   border: 0;
   margin: 0;
