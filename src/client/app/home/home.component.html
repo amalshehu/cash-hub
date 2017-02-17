@@ -1,136 +1,113 @@
-<div fxLayout="row" fxLayoutAlign="center center">
-  <md-card class="card_align" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="space-between center" fxFlex="85%" style="height:620px;">
 
-    <form class="example-form" [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
-      <md-input-container>
-        <input mdInput placeholder="Cash Hub" value="Serial Number" formControlName="serialNumber">
+  <div class="app-content" >
+  <form class="example-form" [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
+    <div class="flex-container"
+         fxLayout="row"
+         fxLayout.xs="column"
+         fxLayoutAlign="center center"
+         fxLayoutAlign.xs="start">
 
-      </md-input-container>
-      <table >
-        <tr>
-          <td>
-            <md-input-container>
-              <input mdInput placeholder="Name" formControlName="name">
-            </md-input-container>
+      <div class="flex-item" fxFlex="40%" fxFlex.xs="40%">
+        <md-card class="app-input-section" >
 
-          </td>
-          <td>
-            <md2-datepicker formControlName="date"></md2-datepicker>
 
-          </td>
-        </tr>
-      </table>
-      <div class="register_card" fxFlex="45%">
-      <p>
-        <md-input-container>
-          <textarea mdInput placeholder="Address" formControlName="address"></textarea>
-        </md-input-container>
+          <md-input-container class="example-full-width">
+    <input mdInput placeholder="Cash hub" disabled value="Serial number">
+  </md-input-container>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="Name" formControlName="name">
+          </md-input-container>
+          <md-input-container class="example-full-width2" >
+            <textarea mdInput placeholder="Address" formControlName="address"></textarea>
+          </md-input-container>
+          <md-input-container class="example-full-width2">
+            <textarea mdInput placeholder="Remarks" formControlName="remarks"></textarea>
+          </md-input-container>
+          <md-input-container class="example-full-width2">
+            <input mdInput placeholder="Phone No." formControlName="phoneNumber">
+          </md-input-container>
+          <md-input-container class="example-full-width2">
+            <input mdInput placeholder="Mobile No." formControlName="mobileNumber">
+          </md-input-container>
+          <md-input-container class="example-full-width2">
+            <input mdInput placeholder="ID Card No." formControlName="idNumber">
+          </md-input-container>
+        </md-card>
+      </div>
 
-        <md-input-container >
-          <textarea mdInput placeholder="Remarks" formControlName="remarks"></textarea>
-        </md-input-container>
-      </p>
+      <div class="flex-item" fxFlex="50%">
+        <md-card >
+          <md2-datepicker formControlName="date"></md2-datepicker>
+          <md2-autocomplete
+          [items]="currency"
+                    item-text="name"
+                    (change)="change($event)"
+                    placeholder="Nationality"
+                    formControlName="nationality"
+                    >
+          </md2-autocomplete>
+          <div formArrayName="items">
+
+             <div *ngFor="let item of myForm.controls.items.controls; let i=index">
+                 <div [formGroupName]="i">
+                   <md2-autocomplete [items]="currency"
+                             item-text="currency"
+                             (change)="handleChange($event, i)"
+                             placeholder="Currency purchased"
+                             formControlName="currency"
+                             >
+                   </md2-autocomplete>
+                   <md-select placeholder="Currency type" name="cTypes" formControlName="currencyType" class="select">
+                     <md-option *ngFor="let currencyType of cTypes" [value]="currencyType.viewValue">
+                       {{currencyType.viewValue}}
+                     </md-option>
+                   </md-select>
+                   <md-input-container >
+                     <input mdInput placeholder="Amount" formControlName="amount">
+                   </md-input-container>
+                   <md-input-container >
+                     <input mdInput placeholder="Present rate" [value]="presentRate" formControlName="presentRate"  >
+                   </md-input-container>
+                   <md-input-container >
+                     <input mdInput placeholder="Rupee Equivalent" value={{getRupee()}} formControlName="total" >
+                   </md-input-container>
+
+
+                 </div>
+             </div>
+          </div>
+        </md-card>
+      </div>
     </div>
-      <table >
-        <tr>
 
-          <td>
+        <md-card class="app-input-section">
+        <div class="flex-item" fxFlex="50%" fxFlex.xs="40%"  >
+        <sd-data-table [rows] = "rows"></sd-data-table>
+       </div>
+          <div class="flex-item" fxFlex ="30%" align="end">
+
             <md-input-container >
-              <input mdInput placeholder="ID Card No." formControlName="idNumber">
+              <input mdInput placeholder="Tax %" value="{{getTax()}}" formControlName="tax">
             </md-input-container>
-          </td>
+             <md-input-container >
+               <input mdInput placeholder="Tax Amount" value="{{getTaxAmount()}}" formControlName="taxAmount">
+             </md-input-container>
 
+             <md-input-container >
+               <input mdInput placeholder="Total" formControlName="totalCost">
+             </md-input-container>
 
-        </tr>
-      </table>
-
-      <table >
-        <tr>
-          <td>
-            <md-input-container >
-              <input mdInput placeholder="Phone No." formControlName="phoneNumber">
-            </md-input-container>
-          </td>
-          <td>
-            <md-input-container >
-              <input mdInput placeholder="Mobile No." formControlName="mobileNumber">
-            </md-input-container>
-          </td>
-          <td>
-            <md2-autocomplete
-            [items]="currency"
-                      item-text="name"
-                      (change)="change($event)"
-                      placeholder="Nationality"
-                      formControlName="nationality"
-                      >
-            </md2-autocomplete>
-        </td>
-        <td>
-
-      </td>
-      <td>
-        <div formArrayName="items">
-           <div *ngFor="let item of myForm.controls.items.controls; let i=index">
-               <div [formGroupName]="i">
-                 <md2-autocomplete [items]="currency"
-                           item-text="currency"
-                           (change)="handleChange($event, i)"
-                           placeholder="Currency purchased"
-                           formControlName="currency"
-                           >
-                 </md2-autocomplete>
-                 <md-input-container >
-                   <input mdInput placeholder="Present rate" [value]="presentRate" formControlName="presentRate"  >
-                 </md-input-container>
-                 <md-input-container >
-                   <input mdInput placeholder="Amount" formControlName="amount">
-                 </md-input-container>
-
-
-                       <md-input-container >
-                         <input mdInput placeholder="Rupee Equivalent" value={{getRupee()}} formControlName="total">
-                       </md-input-container>
-
-                 <md-select placeholder="Currency Type" name="cTypes" formControlName="currencyType">
-                   <md-option *ngFor="let currencyType of cTypes" [value]="currencyType.viewValue">
-                     {{currencyType.viewValue}}
-                   </md-option>
-                 </md-select>
-
-               </div>
+             <md-input-container >
+               <input mdInput placeholder="Grand Total"  formControlName="grandTotal" >
+             </md-input-container>
            </div>
-        </div>
-    </td>
-        </tr>
-      </table>
+          <div class="flex-item" fxFlex="30px" fxLayout="row" fxFlex.xs="40%">
+            <button md-raised-button color="primary" type="submit" >Save</button>
+            <button md-raised-button color="warn">Remove selected currency</button>
+            <button md-raised-button color="primary" (click)="addItem(i)">Add</button>
+            <button md-raised-button color="accent">Edit</button>
+          </div>
 
-      <md-input-container >
-        <input mdInput placeholder="Tax %" formControlName="tax">
-      </md-input-container>
-      <md-input-container >
-        <input mdInput placeholder="Tax Amount" value="{{getTaxAmount()}}" formControlName="taxAmount">
-      </md-input-container>
-
-      <md-input-container >
-        <input mdInput placeholder="Total" formControlName="totalCost">
-      </md-input-container>
-
-      <md-input-container >
-        <input mdInput placeholder="Grand Total"  formControlName="grandTotal" >
-      </md-input-container>
-
-
-
-      <div fxFlex="90%" >
-           <ngx-datatable class="material" [rows]="rows" [columns]="columns">
-          </ngx-datatable>
-     </div>
-
-      <button md-raised-button color="primary" type="submit" >Save</button>
-      <button md-raised-button color="warn">Remove selected currency</button>
-      <button md-raised-button color="primary">Add</button>
-      <button md-raised-button color="accent">Edit</button>
-    </form>
-  </md-card>
+      </md-card>
+  </form>
 </div>

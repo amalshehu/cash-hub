@@ -29,13 +29,7 @@ export class HomeComponent implements OnInit {
    rows = [
    { currency: 'Dirham', type: 'CN & Coins', amount: 1000, rate: 14,rupee:15000  }
    ];
-   columns = [
-   { prop: 'currency' },
-   { name: 'Type' },
-   { name: 'Amount' },
-   { name: 'Rate' },
-   { name: 'Rupee' }
-   ];
+
    dataModel:any;
    presentRate = '';
    constructor(
@@ -53,9 +47,9 @@ export class HomeComponent implements OnInit {
              mobileNumber: ['', [Validators.required, Validators.minLength(2)]],
              nationality: [''],
              tax: ['', [Validators.minLength(2)]],
-             totalCost: ['', [Validators.minLength(2)]],
-             taxAmount: ['', [Validators.minLength(2)]],
-             grandTotal: ['', [Validators.minLength(2)]],
+             totalCost: [{ value: '', disabled: true }, [Validators.minLength(2)]],
+             taxAmount: [{ value: '', disabled: true }, [Validators.minLength(2)]],
+             grandTotal: [{ value: '', disabled: true }, [Validators.minLength(2)]],
              items: fb.array([
                  this.initItem(),
              ])
@@ -76,7 +70,7 @@ export class HomeComponent implements OnInit {
           currencyType: [''],
           amount: [],
           presentRate:[''],
-          total:[]
+          total:[{ value: '', disabled: true }, [Validators.minLength(2)]]
       });
   }
 
@@ -161,7 +155,7 @@ export class HomeComponent implements OnInit {
 
   }
    getTax() {
-     var tax = this.myForm.value.tax=10;
+     var tax = this.myForm.value.tax =10;
      return tax;
    }
    getRupee() {
@@ -173,14 +167,19 @@ export class HomeComponent implements OnInit {
      return rupee;
    }
    getTaxAmount() {
-     if (this.myForm.value.items[0].amount) {
-       return this.myForm.get('items[0].amount').valueChanges
-           .subscribe(val => {
-             this.myForm.get('taxAmount').updateValueAndValidity(val * 11 )
-           }
-     );
+     let taxAmount;
+     if (this.getRupee()) {
+       taxAmount = this.getRupee();
+       taxAmount = taxAmount * (10 / 100);
      }
-     return null;
+    //  if (this.myForm.value.items[0].amount) {
+    //    return this.myForm.get('items[0].amount').valueChanges
+    //        .subscribe(val => {
+    //          this.myForm.get('taxAmount').updateValueAndValidity(val * 11 )
+    //        }
+    //  );
+    //  }
+    return taxAmount;;
    }
 
    getTotal() {
