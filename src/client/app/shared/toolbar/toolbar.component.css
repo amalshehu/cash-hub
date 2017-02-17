@@ -1,4 +1,4 @@
-:host {
+/*:host {
   background-color:#2E7D32;
   color: rgba(255, 255, 255, 1);
   display: block;
@@ -20,4 +20,13 @@ h1 {
   height: 24px;
   margin-top: 12px;
   width: 24px;
+}*/
+
+.app-toolbar-filler {
+  flex: 1 1 auto;
+}
+
+.app-toolbar-menu {
+  padding: 0 14px 0 14px;
+  color: white;
 }
