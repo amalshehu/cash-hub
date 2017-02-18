@@ -7,7 +7,7 @@
          fxLayoutAlign="center center"
          fxLayoutAlign.xs="start">
 
-      <div class="flex-item" fxFlex="40%" fxFlex.xs="40%">
+      <div class="flex-item" fxFlex="50%" fxFlex.xs="40%">
         <md-card class="app-input-section" >
 
 
@@ -56,13 +56,6 @@
               &nbsp;
             </span>
           </md-input-container>
-        </md-card>
-      </div>
-
-      <div class="flex-item" fxFlex="50%">
-        <md-card >
-          <md2-datepicker formControlName="date"></md2-datepicker>
-
           <md2-autocomplete
           [items]="currency"
                     item-text="name"
@@ -73,8 +66,13 @@
 
           </md2-autocomplete>
 
-          <div formArrayName="items">
+        </md-card>
+      </div>
 
+      <div class="flex-item" fxFlex="50%">
+        <md-card class="app-input-section" style="height: 370px">
+          <md2-datepicker formControlName="date"></md2-datepicker>
+          <div formArrayName="items">
              <div *ngFor="let item of myForm.controls.items.controls; let i=index">
                  <div [formGroupName]="i">
                    <md2-autocomplete [items]="currency"
@@ -84,7 +82,7 @@
                              formControlName="currency"
                              >
                    </md2-autocomplete>
-                   <md-select placeholder="Currency type" name="cTypes" formControlName="currencyType" class="select">
+                   <md-select placeholder="Currency type" name="cTypes" formControlName="currencyType">
                      <md-option *ngFor="let currencyType of cTypes" [value]="currencyType.viewValue">
                        {{currencyType.viewValue}}
                      </md-option>
@@ -99,6 +97,12 @@
                      <input mdInput placeholder="Rupee Equivalent" value={{getRupee()}} formControlName="total" >
                    </md-input-container>
 
+                   <div class="flex-item" fxFlex >
+                     <button md-raised-button color="primary" type="submit" >Save</button >
+                     <button md-raised-button color="primary" (click)="addItem(i)">Add</button>
+                     <button md-raised-button color="warn">Remove selected currency</button>
+                     <button md-raised-button >Edit</button>
+                   </div>
 
                  </div>
              </div>
@@ -107,11 +111,11 @@
       </div>
     </div>
 
-        <md-card class="app-input-section">
-        <div class="flex-item" fxFlex="50%" fxFlex.xs="40%"  >
+        <md-card class="app-input-section"  fxFlex="100%"  fxLayoutAlign="center center">
+        <div class="flex-item" fxFlex="50%" fxFlex.xs="40%" align="end" style="box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)">
         <sd-data-table [rows] = "rows"></sd-data-table>
        </div>
-          <div class="flex-item" fxFlex ="30%" align="end">
+          <div class="flex-item" fxFlex ="30%" style="margin-left: auto">
 
             <md-input-container >
               <input mdInput placeholder="Tax %" value="{{getTax()}}" formControlName="tax">
@@ -128,13 +132,6 @@
                <input mdInput placeholder="Grand Total"  formControlName="grandTotal" >
              </md-input-container>
            </div>
-          <div class="flex-item" fxFlex >
-            <button md-raised-button color="primary" type="submit" >Save</button >
-            <button md-raised-button color="warn">Remove selected currency</button>
-            <button md-raised-button color="primary" (click)="addItem(i)">Add</button>
-            <button md-raised-button color="accent">Edit</button>
-          </div>
-
       </md-card>
   </form>
 </div>

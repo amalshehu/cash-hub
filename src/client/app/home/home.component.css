@@ -2,13 +2,8 @@
 @import '/node_modules/@swimlane/ngx-datatable/release/material.css';
 @import '/node_modules/@swimlane/ngx-datatable/release/assets/icons.css';
 
-.select md2-select
-{
-	position: relative;
-    bottom: 11px;
-    left: 15px;
-		font-size: 15px;
-}
+
+
 .md_select md2-select
 {
 	width: 10%;
@@ -36,6 +31,10 @@
     width: 300px;
 		box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
+.app-input-section {
+	 box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
 .example-form {
 
     font-size: 15px;
@@ -136,3 +135,8 @@ md-sidenav-layout.m2app-dark {
 .app-progress {
   margin: 20px;
 }
+
+/*.cyan-text {
+    color: cyan !important;
+		background-color: yellowgreen;
+}*/
