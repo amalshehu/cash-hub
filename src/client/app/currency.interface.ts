@@ -18,6 +18,7 @@ export interface Currency {
 export interface Item {
   currencyName: string;
   currencyType: string;
-  amount: number;
+  currencyValue:string;
+  total: number;
   presentRate:number;
 }

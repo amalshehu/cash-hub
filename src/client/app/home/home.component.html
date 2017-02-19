@@ -5,9 +5,9 @@
          fxLayout="row"
          fxLayout.xs="column"
          fxLayoutAlign="center center"
-         fxLayoutAlign.xs="start">
+         fxLayoutAlign.xs="start" >
 
-      <div class="flex-item" fxFlex="50%" fxFlex.xs="40%">
+      <div class="flex-item" fxFlex="50%" fxFlex.xs="40%" >
         <md-card class="app-input-section" >
 
 
@@ -59,6 +59,7 @@
           <md2-autocomplete
           [items]="currency"
                     item-text="name"
+                    item-value="name"
                     (change)="change($event)"
                     placeholder="Nationality"
                     formControlName="nationality"
@@ -70,11 +71,11 @@
       </div>
 
       <div class="flex-item" fxFlex="50%">
-        <md-card class="app-input-section" style="height: 370px">
+        <md-card class="app-input-section" style="height: relative" >
           <md2-datepicker formControlName="date"></md2-datepicker>
           <div formArrayName="items">
-             <div *ngFor="let item of myForm.controls.items.controls; let i=index">
-                 <div [formGroupName]="i">
+             <div >
+                 <div [formGroupName]="i" *ngFor="let item of myForm.controls.items.controls; let i=index">
                    <md2-autocomplete [items]="currency"
                              item-text="currency"
                              (change)="handleChange($event, i)"
@@ -82,9 +83,10 @@
                              formControlName="currency"
                              >
                    </md2-autocomplete>
-                   <md-select placeholder="Currency type" name="cTypes" formControlName="currencyType">
-                     <md-option *ngFor="let currencyType of cTypes" [value]="currencyType.viewValue">
-                       {{currencyType.viewValue}}
+
+                   <md-select placeholder="Currency type" formControlName="currencyType">
+                     <md-option *ngFor="let type of currencyType" [value]="type" >
+                       {{type}}
                      </md-option>
                    </md-select>
                    <md-input-container >
@@ -98,7 +100,7 @@
                    </md-input-container>
 
                    <div class="flex-item" fxFlex >
-                     <button md-raised-button color="primary" type="submit" >Save</button >
+                     <button md-raised-button color="primary" (ngSubmit)="save(myForm.value)" >Save</button >
                      <button md-raised-button color="primary" (click)="addItem(i)">Add</button>
                      <button md-raised-button color="warn">Remove selected currency</button>
                      <button md-raised-button >Edit</button>
@@ -111,7 +113,7 @@
       </div>
     </div>
 
-        <md-card class="app-input-section"  fxFlex="100%"  fxLayoutAlign="center center">
+        <md-card class="app-input-section"  fxFlex="100%"  fxLayoutAlign="center center">Current items:{{myForm.controls.items.controls.length}}
         <div class="flex-item" fxFlex="50%" fxFlex.xs="40%" align="end" style="box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)">
         <sd-data-table [rows] = "rows"></sd-data-table>
        </div>

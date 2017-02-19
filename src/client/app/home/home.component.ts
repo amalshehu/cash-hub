@@ -22,46 +22,41 @@ export class HomeComponent implements OnInit {
   item :any= {};
   temp:any={};
   temps:any=[];
-
-  cTypes = [
-     {value: '1', viewValue: 'CN & Coins'}
-  ];
+  model:Currency;
+  currencyType:string[];
    rows = [
-   { currency: 'Dirham', type: 'CN & Coins', amount: 1000, rate: 14,rupee:15000  }
+   { currency: 'Dirham', type: 'CN & Coins', amount: 1000, rate: 14,rupee:15000  },
    ];
-
-   dataModel:any;
+  //  dataModel:any;
    presentRate = '';
    constructor(
      public nameListService: NameListService,
      private fb: FormBuilder) {
-       this.dataModel = {};
-       this.myForm = fb.group({
-             name: ['', [Validators.required, Validators.minLength(2)]],
-             date: ['', [Validators.required, Validators.minLength(2)]],
-             address: ['', [Validators.required, Validators.minLength(2)]],
-             remarks: ['', [Validators.required, Validators.minLength(2)]],
-             serialNumber: ['', [Validators.required, Validators.minLength(1)]],
-             idNumber: ['', [Validators.required, Validators.minLength(2)]],
-             phoneNumber: ['', [Validators.required, Validators.minLength(2)]],
-             mobileNumber: ['', [Validators.required, Validators.minLength(2)]],
-             nationality: [''],
-             tax: ['', [Validators.minLength(2)]],
-             totalCost: [{ value: '', disabled: true }, [Validators.minLength(2)]],
-             taxAmount: [{ value: '', disabled: true }, [Validators.minLength(2)]],
-             grandTotal: [{ value: '', disabled: true }, [Validators.minLength(2)]],
-             items: fb.array([
-                 this.initItem(),
-             ])
-         });
-     this.currency = {};
-
+    //  this.currency = {};
+    //  this.model = {};
+    //  this.model.items. = [];
   }
-
     ngOnInit() {
-
+    this.currencyType = ['CN & Coins']
     this.getCurrency();
-
+    this.myForm = this.fb.group({
+          name: ['', [Validators.required, Validators.minLength(2)]],
+          date: ['', [Validators.required, Validators.minLength(2)]],
+          address: ['', [Validators.required, Validators.minLength(2)]],
+          remarks: ['', [Validators.required, Validators.minLength(2)]],
+          serialNumber: ['', [Validators.required, Validators.minLength(1)]],
+          idNumber: ['', [Validators.required, Validators.minLength(2)]],
+          phoneNumber: ['', [Validators.required, Validators.minLength(2)]],
+          mobileNumber: ['', [Validators.required, Validators.minLength(2)]],
+          nationality: [''],
+          tax: ['', [Validators.minLength(2)]],
+          totalCost: [{ value: '', disabled: true }, [Validators.minLength(2)]],
+          taxAmount: [{ value: '', disabled: true }, [Validators.minLength(2)]],
+          grandTotal: [{ value: '', disabled: true }, [Validators.minLength(2)]],
+          items: this.fb.array([
+              this.initItem(),
+          ])
+      });
     }
     initItem() {
       return this.fb.group({
@@ -74,8 +69,9 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  addItem(i) {
+  addItem() {
     const control = <FormArray>this.myForm.controls['items'];
+       console.log(control);
        control.push(this.initItem());
   }
 
@@ -83,7 +79,7 @@ export class HomeComponent implements OnInit {
       const control = <FormArray>this.myForm.controls['items'];
       control.removeAt(i);
   }
-  save(model:any, i: index) {
+  save(formValue:any) {
     // const control3: AbstractControl = this.myForm.get(`items.${i}.amount`);
     // const control4: AbstractControl = this.myForm.get(`items.${i}.total`);
     // let total = control3.value;
@@ -91,7 +87,8 @@ export class HomeComponent implements OnInit {
     // control4.patchValue(total);
         // call API to save
         // ...
-        console.log(model.value);
+        this.model = formValue as Currency;
+        console.log(this.model);
     }
   getCurrency() {
     this.nameListService.get()

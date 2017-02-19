@@ -135,7 +135,9 @@ md-sidenav-layout.m2app-dark {
 .app-progress {
   margin: 20px;
 }
-
+.md-select-value *:first-child {
+  width: calc(100% - 24px);
+}
 /*.cyan-text {
     color: cyan !important;
 		background-color: yellowgreen;
