@@ -1,0 +1,107 @@
+<div>
+  <div>
+
+
+    Search: <input *ngIf="!inChange && !inPush" list="items" #term type="text" (keyup)="search(term.value)" >
+    <datalist id="items">
+  <option  *ngFor="let item of items" value={{item.cname}}>
+   </datalist>
+
+  </div>
+
+  <p><button style="float: right;" *ngIf="!inChange && !inSearch && !inPush " (click)="enablePush()"> Add</button></p>
+  <!--  <p><search  *ngIf="!inPush && !inChange" [(names)]="name"></search></p>  -->
+
+  <!-- <p><button  *ngIf="!inPush && !inChange " (click)="enableSearching(name)"> Find</button></p>  -->
+
+
+
+  <table rules=rows class="table">
+    <thead *ngIf="!inChange && !inPush ">
+
+      <tr>
+        <th style="background-color: rgba(255, 0, 0, 0.2);">ItemName</th>
+        <th style="background-color: rgba(255, 0, 0, 0.3);">ItemType</th>
+        <th style="background-color: rgba(255, 0, 0, 0.4);">ItemCost</th>
+        <th style="background-color: rgba(255, 0, 0, 0.4);">ItemVendor</th>
+        <th style="background-color: rgba(255, 0, 0, 0.5);">Actions</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="items.length === 0 ">
+      <tr>
+        <td *ngIf="!inPush" colspan="4">There are no items currently</td>
+      </tr>
+    </tbody>
+
+    <!-- <tbody *ngIf="!inChange && !inSearch  && !inPush ">
+      <tr *ngFor="let item of items | orderBy : ['cname']">
+        <td>{{item.cname}}</td>
+        <td>{{item.ccode}}</td>
+        <td>{{item.ccost}}</td>
+        <td>{{item.crate}}</td>
+        <td>
+          <button (click)="enableChange(item)"> Edit</button> <button (click)="submitRemove(item)"><i  ></i> Delete</button>
+        </td>
+      </tr>
+    </tbody>
+
+    <tbody *ngIf="inSearch">
+      <tr *ngFor="let item of items  | orderBy : ['cname']">
+        <td>{{item.cname}}</td>
+        <td>{{item.ccode}}</td>
+        <td>{{item.ccost}}</td>
+        <td>{{item.crate}}</td>
+        <td>
+          <button (click)="enableChange(item)"> Edit</button> <button (click)="submitRemove(item)"><i ></i> Delete</button>
+        </td>
+      </tr>
+    </tbody> -->
+
+    <form *ngIf="inChange">
+
+      <form #form="ngForm" (ngSubmit)="submitChange(item)">
+        <div class="form-group">
+          <input class="form-control" type="text" name="name" [(ngModel)]="item.cname" placeholder="Name" required>
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="text" name="type" [(ngModel)]="item.ctype" placeholder="ItemType" required>
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="long int" style="width:250px;" name="cost" [(ngModel)]="item.ccost" placeholder="Phone" min="0" required>
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="text" name="vendorname" [(ngModel)]="item.crate" placeholder="Rate" min="0" required>
+        </div>
+        <button type="submit" [disabled]="!form.form.valid"> Save</button> <button (click)="cancelChange()"> Cancel</button>
+      </form>
+
+
+    </form>
+
+
+
+
+    <form *ngIf="inPush" [formGroup]="addItemForm" (ngSubmit)="submitPush()">
+      <div class="form-group">
+        <input class="form-control" type="text" name="pname" formControlName="cname" placeholder="Name">
+
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="ptype" formControlName="ctype" placeholder="Type">
+
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="long int" style="width:250px;" name="ccost" formControlName="pcost" placeholder="Cost">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="vname" formControlName="crate" placeholder="Rate">
+
+      </div>
+      <button type="submit" [disabled]="!addItemForm.valid"> Add</button>
+      <button (click)="cancelPush()"> Cancel</button>
+    </form>
+  </table>
+
+  <button *ngIf="inSearch" (click)="cancelSearch()"> Cancel</button>
+
+</div>

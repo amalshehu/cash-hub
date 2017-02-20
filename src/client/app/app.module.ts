@@ -10,13 +10,14 @@ import { AboutModule } from './about/about.module';
 import { HomeModule } from './home/home.module';
 import { LoginModule } from './login/login.module';
 import { RegisterModule } from './register/register.module';
+import { SettingsModule } from './settings/settings.module';
 
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [BrowserModule, HttpModule, AppRoutingModule, AboutModule, HomeModule, RegisterModule,
-     SharedModule.forRoot(), LoginModule, MaterialModule.forRoot(), ReactiveFormsModule],
+     SharedModule.forRoot(), LoginModule, MaterialModule.forRoot(), ReactiveFormsModule, SettingsModule],
   declarations: [AppComponent],
   providers: [{
     provide: APP_BASE_HREF,

@@ -1,13 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SettingsComponent } from './settings.component';
-import { RegisterRoutingModule } from './settings-routing.module';
-
+import { SettingsRoutingModule } from './settings-routing.module';
+import { MaterialModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
+// import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { Md2Module }  from 'md2';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SettingService } from './settings.service';
 @NgModule({
   imports: [
-    CommonModule, RegisterRoutingModule
+    CommonModule, SettingsRoutingModule, MaterialModule.forRoot(),
+    FlexLayoutModule.forRoot(), ReactiveFormsModule
   ],
   declarations: [SettingsComponent],
-  exports: [SettingsComponent]
+  exports: [SettingsComponent],
+  providers: [SettingService]
 })
-export class RegisterModule { }
+export class SettingsModule { }

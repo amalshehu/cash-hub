@@ -18,3 +18,4 @@ import { DataTableComponent } from './data-table.component'
   providers: [NameListService]
 })
 export class HomeModule { }
+  

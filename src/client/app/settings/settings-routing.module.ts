@@ -10,4 +10,4 @@ import { SettingsComponent } from './settings.component';
   ],
   exports: [RouterModule]
 })
-export class RegisterRoutingModule { }
+export class SettingsRoutingModule { }

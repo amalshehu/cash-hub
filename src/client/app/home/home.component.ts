@@ -88,7 +88,8 @@ export class HomeComponent implements OnInit {
         // call API to save
         // ...
         this.model = formValue as Currency;
-        console.log(this.model);
+        let stringified = JSON.stringify(this.model);
+        this.model = JSON.parse(stringified);
     }
   getCurrency() {
     this.nameListService.get()
