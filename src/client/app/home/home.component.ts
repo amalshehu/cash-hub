@@ -13,6 +13,7 @@ import { Currency } from '../currency.interface';
 })
 export class HomeComponent implements OnInit {
   public myForm: FormGroup;
+  public myForm2: FormGroup;
 
   errorMessage:any;
   currency:any;
@@ -53,6 +54,14 @@ export class HomeComponent implements OnInit {
           totalCost: [{ value: '', disabled: true }, [Validators.minLength(2)]],
           taxAmount: [{ value: '', disabled: true }, [Validators.minLength(2)]],
           grandTotal: [{ value: '', disabled: true }, [Validators.minLength(2)]],
+          tempItems: this.fb.group({
+            currency: [''],
+            currencyName: [''],
+            currencyType: [''],
+            amount: [],
+            presentRate:[''],
+            total:[{ value: '', disabled: true }, [Validators.minLength(2)]]
+          }),
           items: this.fb.array([
               this.initItem(),
           ])
@@ -60,16 +69,26 @@ export class HomeComponent implements OnInit {
     }
     initItem() {
       return this.fb.group({
-          currency: [''],
-          currencyName: [''],
+          currencyName: [],
           currencyType: [''],
           amount: [],
           presentRate:[''],
           total:[{ value: '', disabled: true }, [Validators.minLength(2)]]
       });
   }
+//   tempItems() {
+//     return this.fb.group({
+//         currency: [''],
+//         currencyName: [''],
+//         currencyType: [''],
+//         amount: [],
+//         presentRate:[''],
+//         total:[{ value: '', disabled: true }, [Validators.minLength(2)]]
+//     });
+// }
 
   addItem() {
+
     const control = <FormArray>this.myForm.controls['items'];
        console.log(control);
        control.push(this.initItem());
@@ -87,9 +106,11 @@ export class HomeComponent implements OnInit {
     // control4.patchValue(total);
         // call API to save
         // ...
-        this.model = formValue as Currency;
-        let stringified = JSON.stringify(this.model);
-        this.model = JSON.parse(stringified);
+        // this.model = formValue as Currency;
+        this.model = formValue;
+        console.log(this.model);
+        // let stringified = JSON.stringify(this.model);
+        // this.model = JSON.parse(stringified);
     }
   getCurrency() {
     this.nameListService.get()
@@ -100,8 +121,8 @@ export class HomeComponent implements OnInit {
   }
   handleChange($event: any, i: index) {
   console.log($event)
-  const control: AbstractControl = this.myForm.get(`items.${i}.presentRate`);
-  const control2: AbstractControl = this.myForm.get(`items.${i}.currencyName`);
+  const control: AbstractControl = this.myForm.get(`tempItems.presentRate`);
+  const control2: AbstractControl = this.myForm.get(`tempItems.currencyName`);
 
 
   let currencyRate: any;
