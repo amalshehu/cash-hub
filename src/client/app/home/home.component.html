@@ -93,9 +93,23 @@
                      <md-input-container >
                        <input mdInput placeholder="Rupee Equivalent" value={{getRupee()}} formControlName="total" >
                      </md-input-container>-->
-                      <md-input-container >
+                     <md-input-container >
                        <input mdInput placeholder="Amount" formControlName="amount">
                      </md-input-container>
+                     <md-input-container>
+                          <input mdInput placeholder="Currency purchased" (change)="handleChange($event, i)" [mdAutocomplete]="reactiveAuto" [formControl]="stateCtrl">
+                     </md-input-container>
+
+                     <md-autocomplete #reactiveAuto="mdAutocomplete" [displayWith]="displayFn">
+                     <md-option *ngFor="let currency of reactiveStates | async" [value]="currency">
+                       <span>{{ currency.currency }}</span>
+                       <span class="demo-secondary-text"> ({{currency.code}}) </span>
+                     </md-option>
+                   </md-autocomplete>
+                   <md-input-container >
+                     <input mdInput placeholder="Present rate" [value]="presentRate" formControlName="presentRate"  >
+                   </md-input-container>
+
                    </div>
 
                              <div class="flex-item" fxFlex >

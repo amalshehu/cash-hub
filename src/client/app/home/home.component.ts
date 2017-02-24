@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output, Inject } from '@angular
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NameListService } from '../shared/name-list/name-list.service';
 import { Currency } from '../currency.interface';
+import 'rxjs/add/operator/startWith';
+
 /**
  * This class represents the lazy loaded HomeComponent.
  */
@@ -14,6 +16,9 @@ import { Currency } from '../currency.interface';
 export class HomeComponent implements OnInit {
   public myForm: FormGroup;
   public myForm2: FormGroup;
+
+  stateCtrl: FormControl;
+  filteredStates: any;
 
   errorMessage:any;
   currency:any;
@@ -30,13 +35,30 @@ export class HomeComponent implements OnInit {
    ];
   //  dataModel:any;
    presentRate = '';
+   reactiveStates: any;
+
    constructor(
      public nameListService: NameListService,
      private fb: FormBuilder) {
     //  this.currency = {};
     //  this.model = {};
     //  this.model.items. = [];
+
+    this.stateCtrl = new FormControl();
+
+    this.reactiveStates = this.stateCtrl.valueChanges
+       .startWith(this.stateCtrl.value)
+       .map(val => this.displayFn(val))
+       .map(name => this.filterStates(name));
   }
+  displayFn(value: any): string {
+    return value && typeof value === 'object' ? value.currency : value;
+  }
+
+  filterStates(val: string) {
+    return val ? this.currency.filter((s) => s.name.match(new RegExp(val, 'gi'))) : this.currency;
+  }
+
     ngOnInit() {
     this.currencyType = ['CN & Coins']
     this.getCurrency();
@@ -55,7 +77,7 @@ export class HomeComponent implements OnInit {
           taxAmount: [{ value: '', disabled: true }, [Validators.minLength(2)]],
           grandTotal: [{ value: '', disabled: true }, [Validators.minLength(2)]],
           tempItems: this.fb.group({
-            currency: [''],
+            currency: [this.stateCtrl.value],
             currencyName: [''],
             currencyType: [''],
             amount: [],
@@ -69,7 +91,7 @@ export class HomeComponent implements OnInit {
     }
     initItem() {
       return this.fb.group({
-          currencyName: [],
+          currencyName: [''],
           currencyType: [''],
           amount: [],
           presentRate:[''],
