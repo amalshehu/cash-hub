@@ -95,17 +95,20 @@
                      <!-- <md-input-container >
                        <input mdInput placeholder="Amount" formControlName="amount">
                      </md-input-container> -->
-                     <md-input-container>
+                     <form class="example-form" [formGroup]="itemForm" novalidate (ngSubmit)="addItem(itemForm.value)">
+                       <!-- <md-input-container>
                           <input mdInput placeholder="Currency purchased" [mdAutocomplete]="reactiveAuto" [formControl]="stateCtrl">
+                       </md-input-container>
+                       <md-autocomplete #reactiveAuto="mdAutocomplete" [displayWith]="displayFn">
+                         <md-option *ngFor="let currency of reactiveStates | async" [value]="currency">
+                           <span>{{ currency.currency }}</span>
+                           <span class="demo-secondary-text"> ({{currency.code}}) </span>
+                         </md-option>
+                     </md-autocomplete> -->
+                     <md-input-container >
+                       <input mdInput placeholder="Present rate" [value]="presentRate" formControlName="presentRate"  >
                      </md-input-container>
-
-                     <md-autocomplete #reactiveAuto="mdAutocomplete" [displayWith]="displayFn">
-                     <md-option *ngFor="let currency of reactiveStates | async" [value]="currency">
-                       <span>{{ currency.currency }}</span>
-                       <span class="demo-secondary-text"> ({{currency.code}}) </span>
-                     </md-option>
-                   </md-autocomplete>
-
+                   </form>
                    <!-- <md-input-container >
                      <input mdInput placeholder="Present rate" [value]="rateCtrl" formControlName="rateCtrl"  >
                    </md-input-container> -->
@@ -114,7 +117,7 @@
                              <div class="flex-item" fxFlex >
                                <button md-raised-button color="primary" (ngSubmit)="save(myForm.value)" >Save</button >
 
-                               <button md-raised-button color="primary" (click)="addItem()">Add</button>
+                               <button md-raised-button color="primary" (click)="addItem(itemForm.value)" >Add</button>
                                <button md-raised-button color="warn">Remove selected currency</button>
                                <button md-raised-button >Edit</button>
                              </div>
