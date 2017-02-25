@@ -15,12 +15,11 @@ import 'rxjs/add/operator/startWith';
 })
 export class HomeComponent implements OnInit {
   public myForm: FormGroup;
-
+  public itemForm: any;
   stateCtrl: FormControl;
 
   filteredStates: any;
-
-  rateCtrl:FormControl;
+  rateCtrl: FormControl;
 
   errorMessage:any;
   currency:any;
@@ -47,6 +46,7 @@ export class HomeComponent implements OnInit {
     this.item = {};
     this.stateCtrl = new FormControl();
     this.rateCtrl = new FormControl();
+
     this.reactiveStates = this.stateCtrl.valueChanges
        .startWith(this.stateCtrl.value)
        .map(val => this.displayFn(val))
@@ -81,42 +81,23 @@ export class HomeComponent implements OnInit {
           idNumber: ['', [Validators.required, Validators.minLength(2)]],
           phoneNumber: ['', [Validators.required, Validators.minLength(2)]],
           mobileNumber: ['', [Validators.required, Validators.minLength(2)]],
-          ratectrl:[],
           nationality: [''],
           tax: ['', [Validators.minLength(2)]],
           totalCost: [{ value: '', disabled: true }, [Validators.minLength(2)]],
           taxAmount: [{ value: '', disabled: true }, [Validators.minLength(2)]],
           grandTotal: [{ value: '', disabled: true }, [Validators.minLength(2)]],
           items: this.fb.array([
-              this.initItem(),
           ])
       });
+      this.itemForm = new FormGroup ({
+  name: new FormControl()
+});
     }
-    initItem() {
-      return this.fb.group({
-          currencyName: [''],
-          currencyType: [''],
-          amount: [],
-          presentRate:[this.currencyRate],
-          total:[{ value: '', disabled: true }, [Validators.minLength(2)]]
-      });
-  }
-//   tempItems() {
-//     return this.fb.group({
-//         currency: [''],
-//         currencyName: [''],
-//         currencyType: [''],
-//         amount: [],
-//         presentRate:[''],
-//         total:[{ value: '', disabled: true }, [Validators.minLength(2)]]
-//     });
-// }
 
-  addItem() {
-
-    const control = <FormArray>this.myForm.controls['items'];
-       console.log(control);
-       control.push(this.initItem());
+  addItem(itemData:any) {
+    debugger
+    console.log(itemData.value);
+      //  this.itemForm.value= itemData.value;
   }
 
   removeItem(i: number) {
@@ -168,54 +149,25 @@ export class HomeComponent implements OnInit {
     // let name = value.value;
     // this.myForm.controls['nationality'].setValue(name);
   }
-  loadProducts(){
-      this.http.get("/products").map(res => res.json()).subscribe(
-        data => this.products = data,
-        error => console.log(error)
-      );
-    }
 
-   onBlurMethod(i) {
-    this.http.get("/productssss/"+this.myForm.value.products[i].productName).map(res => res.json()).subscribe(
-        data =>{ this.seas = data;
-
-         this.myForm.value.products[i].cost=this.seas.pcost;
-
-          },
-        error => console.log(error)
-     );
-  }
-
-
-  BlurMethod(i){
-    this.http.get("/productssss/"+this.myForm.value.products[i].productName).map(res => res.json()).subscribe(
-        data =>{ this.seas = data;
-      this.myForm.value.products[i].cost=this.seas.pcost;
-         this.myForm.value.products[i].total=this.seas.pcost*this.myForm.value.products[i].quantity;
-
-          },
-        error => console.log(error)
-     );
-
-  }
    getTax() {
-     var tax = this.myForm.value.tax =10;
-     return tax;
+  //    var tax = this.myForm.value.tax =10;
+  //    return tax;
    }
    getRupee() {
-     let rate = this.myForm.value.items[0].presentRate;
-     let amount = this.myForm.value.items[0].amount;
-     if (rate && amount) {
-        var rupee = rate * amount ;
-     }
-     return rupee;
+    //  let rate = this.myForm.value.items[0].presentRate;
+    //  let amount = this.myForm.value.items[0].amount;
+    //  if (rate && amount) {
+    //     var rupee = rate * amount ;
+    //  }
+    //  return rupee;
    }
    getTaxAmount() {
-     let taxAmount;
-     if (this.getRupee()) {
-       taxAmount = this.getRupee();
-       taxAmount = taxAmount * (10 / 100);
-     }
+    //  let taxAmount;
+    //  if (this.getRupee()) {
+    //    taxAmount = this.getRupee();
+    //    taxAmount = taxAmount * (10 / 100);
+    //  }
     //  if (this.myForm.value.items[0].amount) {
     //    return this.myForm.get('items[0].amount').valueChanges
     //        .subscribe(val => {
@@ -223,19 +175,19 @@ export class HomeComponent implements OnInit {
     //        }
     //  );
     //  }
-    return taxAmount;;
+    // return taxAmount;;
    }
 
    getTotal() {
-     var total = 0;
-     for(var i = 0; i === this.myForm.value.items.length; i++) {
-        var item = this.myForm.value.items[i];
-        total += (item.amount * item.presentRate);
-        this.myForm.controls['totalCost'].setValue(total);
-        this.myForm.controls['grandTotal']
-        .setValue(this.myForm.value.totalCost+this.myForm.value.totalCost*(this.myForm.value.tax/100))
-      }
-      return total;
+    //  var total = 0;
+    //  for(var i = 0; i === this.myForm.value.items.length; i++) {
+    //     var item = this.myForm.value.items[i];
+    //     total += (item.amount * item.presentRate);
+    //     this.myForm.controls['totalCost'].setValue(total);
+    //     this.myForm.controls['grandTotal']
+    //     .setValue(this.myForm.value.totalCost+this.myForm.value.totalCost*(this.myForm.value.tax/100))
+    //   }
+    //   return total;
     }
 
 }
