@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
   //  dataModel:any;
    presentRate = '';
    reactiveStates: any;
+   d:any;
    constructor(
      public nameListService: NameListService,
      private fb: FormBuilder) {
@@ -46,7 +47,7 @@ export class HomeComponent implements OnInit {
     this.item = {};
     this.stateCtrl = new FormControl();
     this.rateCtrl = new FormControl();
-
+    this.d = {};
     this.reactiveStates = this.stateCtrl.valueChanges
        .startWith(this.stateCtrl.value)
        .map(val => this.displayFn(val))
@@ -87,17 +88,38 @@ export class HomeComponent implements OnInit {
           taxAmount: [{ value: '', disabled: true }, [Validators.minLength(2)]],
           grandTotal: [{ value: '', disabled: true }, [Validators.minLength(2)]],
           items: this.fb.array([
+             this.initItem(),
           ])
       });
-      this.itemForm = new FormGroup ({
-  name: new FormControl()
-});
+      this.itemForm = this.fb.group({
+        currencyName: [''],
+        currencyType: [''],
+        amount: [''],
+        presentRate: [''],
+        total:[{ value: '', disabled: true }, [Validators.minLength(2)]]
+      });
     }
+  initItem() {
+    return this.fb.group({
+      currencyName: [''],
+      currencyType: [''],
+      amount: [''],
+      presentRate: [this.d.presentRate],
+      total:[{ value: '', disabled: true }, [Validators.minLength(2)]]
+    });
 
+  }
   addItem(itemData:any) {
+    this.d = itemData;
     debugger
-    console.log(itemData.value);
-      //  this.itemForm.value= itemData.value;
+      //  this.itemForm.control.presentRate.patchValue(data.presentRate);
+//       this.itemForm.patchValue({
+//   presentRate: data.presentRate
+// });
+
+
+const control = <FormArray>this.myForm.controls['items'];
+     control.push(this.initItem());
   }
 
   removeItem(i: number) {
@@ -113,7 +135,7 @@ export class HomeComponent implements OnInit {
         // call API to save
         // ...
         // this.model = formValue as Currency;
-        this.model = formValue;
+        this.model = formValue.value;
         console.log(this.model);
         // let stringified = JSON.stringify(this.model);
         // this.model = JSON.parse(stringified);
