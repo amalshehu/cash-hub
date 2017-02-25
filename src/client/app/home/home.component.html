@@ -72,7 +72,6 @@
       <div class="flex-item" fxFlex="50%">
         <md-card class="app-input-section" style="height: relative" >
           <md2-datepicker formControlName="date"></md2-datepicker>
-                 <div formGroupName="tempItems" >
                   <!--    <md2-autocomplete [items]="currency"
                                item-text="currency"
                                (change)="handleChange($event, i)"
@@ -93,11 +92,11 @@
                      <md-input-container >
                        <input mdInput placeholder="Rupee Equivalent" value={{getRupee()}} formControlName="total" >
                      </md-input-container>-->
-                     <md-input-container >
+                     <!-- <md-input-container >
                        <input mdInput placeholder="Amount" formControlName="amount">
-                     </md-input-container>
+                     </md-input-container> -->
                      <md-input-container>
-                          <input mdInput placeholder="Currency purchased" (change)="handleChange($event, i)" [mdAutocomplete]="reactiveAuto" [formControl]="stateCtrl">
+                          <input mdInput placeholder="Currency purchased" [mdAutocomplete]="reactiveAuto" [formControl]="stateCtrl">
                      </md-input-container>
 
                      <md-autocomplete #reactiveAuto="mdAutocomplete" [displayWith]="displayFn">
@@ -106,11 +105,11 @@
                        <span class="demo-secondary-text"> ({{currency.code}}) </span>
                      </md-option>
                    </md-autocomplete>
-                   <md-input-container >
-                     <input mdInput placeholder="Present rate" [value]="presentRate" formControlName="presentRate"  >
-                   </md-input-container>
 
-                   </div>
+                   <!-- <md-input-container >
+                     <input mdInput placeholder="Present rate" [value]="rateCtrl" formControlName="rateCtrl"  >
+                   </md-input-container> -->
+
 
                              <div class="flex-item" fxFlex >
                                <button md-raised-button color="primary" (ngSubmit)="save(myForm.value)" >Save</button >

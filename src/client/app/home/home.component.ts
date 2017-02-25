@@ -15,17 +15,19 @@ import 'rxjs/add/operator/startWith';
 })
 export class HomeComponent implements OnInit {
   public myForm: FormGroup;
-  public myForm2: FormGroup;
 
   stateCtrl: FormControl;
+
   filteredStates: any;
+
+  rateCtrl:FormControl;
 
   errorMessage:any;
   currency:any;
   currencyValue:any;
   selectedValue: string;
   items:any = [];
-  item :any= {};
+  item :any;
   temp:any={};
   temps:any=[];
   model:Currency;
@@ -36,22 +38,30 @@ export class HomeComponent implements OnInit {
   //  dataModel:any;
    presentRate = '';
    reactiveStates: any;
-
    constructor(
      public nameListService: NameListService,
      private fb: FormBuilder) {
     //  this.currency = {};
     //  this.model = {};
     //  this.model.items. = [];
-
+    this.item = {};
     this.stateCtrl = new FormControl();
-
+    this.rateCtrl = new FormControl();
     this.reactiveStates = this.stateCtrl.valueChanges
        .startWith(this.stateCtrl.value)
        .map(val => this.displayFn(val))
        .map(name => this.filterStates(name));
   }
   displayFn(value: any): string {
+      // if (value) {
+        // this.currencyRate.value = value.rate;
+        //
+        // this.item.currencyName = value.currency;
+        // this.item.currencyType = this.currencyType;
+        // // this.item.amount =
+        // this.item.presentRate = value.presentRate;
+        // // this.item.total =
+      // }
     return value && typeof value === 'object' ? value.currency : value;
   }
 
@@ -71,19 +81,12 @@ export class HomeComponent implements OnInit {
           idNumber: ['', [Validators.required, Validators.minLength(2)]],
           phoneNumber: ['', [Validators.required, Validators.minLength(2)]],
           mobileNumber: ['', [Validators.required, Validators.minLength(2)]],
+          ratectrl:[],
           nationality: [''],
           tax: ['', [Validators.minLength(2)]],
           totalCost: [{ value: '', disabled: true }, [Validators.minLength(2)]],
           taxAmount: [{ value: '', disabled: true }, [Validators.minLength(2)]],
           grandTotal: [{ value: '', disabled: true }, [Validators.minLength(2)]],
-          tempItems: this.fb.group({
-            currency: [this.stateCtrl.value],
-            currencyName: [''],
-            currencyType: [''],
-            amount: [],
-            presentRate:[''],
-            total:[{ value: '', disabled: true }, [Validators.minLength(2)]]
-          }),
           items: this.fb.array([
               this.initItem(),
           ])
@@ -94,7 +97,7 @@ export class HomeComponent implements OnInit {
           currencyName: [''],
           currencyType: [''],
           amount: [],
-          presentRate:[''],
+          presentRate:[this.currencyRate],
           total:[{ value: '', disabled: true }, [Validators.minLength(2)]]
       });
   }
@@ -141,25 +144,25 @@ export class HomeComponent implements OnInit {
      error => this.errorMessage = <any>error
    );
   }
-  handleChange($event: any, i: index) {
-  console.log($event)
-  const control: AbstractControl = this.myForm.get(`tempItems.presentRate`);
-  const control2: AbstractControl = this.myForm.get(`tempItems.currencyName`);
-
-
-  let currencyRate: any;
-  let currencyName:any;
-  if ($event.value) {
-    currencyName = $event.value.currency;
-    currencyRate = $event.value.rate;
-  } else {
-    currencyRate = '';
-    currencyName = '';
-  }
-  control.patchValue(currencyRate);
-  control2.patchValue(currencyName);
-
-}
+//   handleChange($event: any, i: index) {
+//   console.log($event)
+//   const control: AbstractControl = this.myForm.get(`tempItems.presentRate`);
+//   const control2: AbstractControl = this.myForm.get(`tempItems.currencyName`);
+//
+//
+//   let currencyRate: any;
+//   let currencyName:any;
+//   if ($event.value) {
+//     currencyName = $event.value.currency;
+//     currencyRate = $event.value.rate;
+//   } else {
+//     currencyRate = '';
+//     currencyName = '';
+//   }
+//   control.patchValue(currencyRate);
+//   control2.patchValue(currencyName);
+//
+// }
   change(value: any) {
     console.log('Changed datassds: ', value);
     // let name = value.value;
