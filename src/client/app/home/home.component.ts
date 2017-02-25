@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, Inject } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NameListService } from '../shared/name-list/name-list.service';
-import { Currency, Item } from '../currency.interface';
+import { Currency } from '../currency.interface';
 import 'rxjs/add/operator/startWith';
 
 /**
@@ -15,7 +15,7 @@ import 'rxjs/add/operator/startWith';
 })
 export class HomeComponent implements OnInit {
   public myForm: FormGroup;
-  public tempItems:FormGroup;
+  public myForm2: FormGroup;
 
   stateCtrl: FormControl;
   filteredStates: any;
@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
     //  this.currency = {};
     //  this.model = {};
     //  this.model.items. = [];
+
     this.stateCtrl = new FormControl();
 
     this.reactiveStates = this.stateCtrl.valueChanges
@@ -57,17 +58,10 @@ export class HomeComponent implements OnInit {
   filterStates(val: string) {
     return val ? this.currency.filter((s) => s.name.match(new RegExp(val, 'gi'))) : this.currency;
   }
+
     ngOnInit() {
     this.currencyType = ['CN & Coins']
     this.getCurrency();
-    this.tempItems = this.fb.group({
-      currency: [''],
-      currencyName: [''],
-      currencyType: [''],
-      amount: [],
-      presentRate:[''],
-      total:[{ value: '', disabled: true }, [Validators.minLength(2)]]
-   });
     this.myForm = this.fb.group({
           name: ['', [Validators.required, Validators.minLength(2)]],
           date: ['', [Validators.required, Validators.minLength(2)]],
@@ -82,6 +76,14 @@ export class HomeComponent implements OnInit {
           totalCost: [{ value: '', disabled: true }, [Validators.minLength(2)]],
           taxAmount: [{ value: '', disabled: true }, [Validators.minLength(2)]],
           grandTotal: [{ value: '', disabled: true }, [Validators.minLength(2)]],
+          tempItems: this.fb.group({
+            currency: [this.stateCtrl.value],
+            currencyName: [''],
+            currencyType: [''],
+            amount: [],
+            presentRate:[''],
+            total:[{ value: '', disabled: true }, [Validators.minLength(2)]]
+          }),
           items: this.fb.array([
               this.initItem(),
           ])
@@ -96,13 +98,22 @@ export class HomeComponent implements OnInit {
           total:[{ value: '', disabled: true }, [Validators.minLength(2)]]
       });
   }
+//   tempItems() {
+//     return this.fb.group({
+//         currency: [''],
+//         currencyName: [''],
+//         currencyType: [''],
+//         amount: [],
+//         presentRate:[''],
+//         total:[{ value: '', disabled: true }, [Validators.minLength(2)]]
+//     });
+// }
 
+  addItem() {
 
-  addItem(data) {
-
-    // const control = <FormArray>this.myForm.controls['items'];
-       console.log(data);
-      //  control.push(this.initItem());
+    const control = <FormArray>this.myForm.controls['items'];
+       console.log(control);
+       control.push(this.initItem());
   }
 
   removeItem(i: number) {
