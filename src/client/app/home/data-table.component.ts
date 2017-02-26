@@ -6,27 +6,15 @@ import { Component, Input } from '@angular/core';
   templateUrl: 'data-table.component.html',
 })
 export class DataTableComponent {
-  rows = [
-  { currency: 'Dirham', type: 'CN & Coins', amount: 1000, rate: 14,rupee:15000  }
-  ];
+  @Input() rows: any;
+  @Input() columns:any;
+  selected:any = [];
 
-
-  selected = [];
-
-  columns = [
-   { prop: 'currency' },
-   { name: 'Type' },
-   { name: 'Amount' },
-   { name: 'Rate' },
-   { name: 'Rupee' }
-
-];
   constructor() {
-    // this.fetch((data) => {
-    //   this.selected = [data[2]];
-    //   this.rows = data;
-    //   debugger
-    // });
+    this.fetch((data) => {
+      this.selected = [data[2]];
+      this.rows = data;
+    });
   }
 
   fetch(cb) {

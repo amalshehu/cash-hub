@@ -108,7 +108,7 @@
 
     <md-card class="app-input-section" fxFlex="100%" fxLayoutAlign="center center">Current items:{{myForm.controls.items.controls.length}}
       <div class="flex-item" fxFlex="50%" fxFlex.xs="40%" align="end" style="box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)">
-        <sd-data-table ></sd-data-table>
+        <sd-data-table [rows]="rows" [columns]="columns"  ></sd-data-table>
       </div>
       <div class="flex-item" fxFlex="30%" style="margin-left: auto">
         <md-input-container>

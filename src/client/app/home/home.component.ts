@@ -33,9 +33,16 @@ export class HomeComponent implements OnInit {
   currencyType:string[];
   tax:number = 16;
   serialNumber:number = 47020;
-   rows = [
-   { currency: 'Dirham', type: 'CN & Coins', amount: 1000, rate: 14,rupee:15000  },
-   ];
+  rows = [
+  { currency: 'Dirham', type: 'CN & Coins', amount: 1000, rate: 14,rupee:15000  }
+  ];
+  columns = [
+  { prop: 'currency' },
+  { name: 'Type' },
+  { name: 'Amount' },
+  { name: 'Rate' },
+  { name: 'Rupee' }
+  ];
   //  dataModel:any;
    presentRate = '';
    reactiveStates: any;
