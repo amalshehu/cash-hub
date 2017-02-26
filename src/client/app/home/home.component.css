@@ -3,6 +3,9 @@
 @import '/node_modules/@swimlane/ngx-datatable/release/assets/icons.css';
 
 
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 
 .md_select md2-select
 {

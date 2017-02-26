@@ -31,6 +31,8 @@ export class HomeComponent implements OnInit {
   temps:any=[];
   model:Currency;
   currencyType:string[];
+  tax:number = 16;
+  serialNumber:number = 47020;
    rows = [
    { currency: 'Dirham', type: 'CN & Coins', amount: 1000, rate: 14,rupee:15000  },
    ];
@@ -54,15 +56,6 @@ export class HomeComponent implements OnInit {
        .map(name => this.filterStates(name));
   }
   displayFn(value: any): string {
-      // if (value) {
-        // this.currencyRate.value = value.rate;
-        //
-        // this.item.currencyName = value.currency;
-        // this.item.currencyType = this.currencyType;
-        // // this.item.amount =
-        // this.item.presentRate = value.presentRate;
-        // // this.item.total =
-      // }
     return value && typeof value === 'object' ? value.currency : value;
   }
 
@@ -78,12 +71,12 @@ export class HomeComponent implements OnInit {
           date: ['', [Validators.required, Validators.minLength(2)]],
           address: ['', [Validators.required, Validators.minLength(2)]],
           remarks: ['', [Validators.required, Validators.minLength(2)]],
-          serialNumber: ['', [Validators.required, Validators.minLength(1)]],
+          serialNumber: [this.serialNumber],
           idNumber: ['', [Validators.required, Validators.minLength(2)]],
           phoneNumber: ['', [Validators.required, Validators.minLength(2)]],
           mobileNumber: ['', [Validators.required, Validators.minLength(2)]],
           nationality: [''],
-          tax: ['', [Validators.minLength(2)]],
+          tax: [this.tax],
           totalCost: [{ value: '', disabled: true }, [Validators.minLength(2)]],
           taxAmount: [{ value: '', disabled: true }, [Validators.minLength(2)]],
           grandTotal: [{ value: '', disabled: true }, [Validators.minLength(2)]],
@@ -101,9 +94,9 @@ export class HomeComponent implements OnInit {
     }
   initItem() {
     return this.fb.group({
-      currencyName: [''],
-      currencyType: [''],
-      amount: [''],
+      currencyName: [this.d.currencyName],
+      currencyType: [this.d.currencyType],
+      amount: [this.d.amount],
       presentRate: [this.d.presentRate],
       total:[{ value: '', disabled: true }, [Validators.minLength(2)]]
     });
@@ -153,23 +146,39 @@ const control = <FormArray>this.myForm.controls['items'];
 //   const control2: AbstractControl = this.myForm.get(`tempItems.currencyName`);
 //
 //
-//   let currencyRate: any;
-//   let currencyName:any;
-//   if ($event.value) {
-//     currencyName = $event.value.currency;
-//     currencyRate = $event.value.rate;
-//   } else {
-//     currencyRate = '';
-//     currencyName = '';
-//   }
-//   control.patchValue(currencyRate);
-//   control2.patchValue(currencyName);
+  // let currencyRate: any;
+  // let currencyName:any;
+  // if ($event.value) {
+  //   currencyName = $event.value.currency;
+  //   currencyRate = $event.value.rate;
+  // } else {
+  //   currencyRate = '';
+  //   currencyName = '';
+  // }
+  // control.patchValue(currencyRate);
+  // control2.patchValue(currencyName);
 //
 // }
-  change(value: any) {
-    console.log('Changed datassds: ', value);
-    // let name = value.value;
-    // this.myForm.controls['nationality'].setValue(name);
+  handle($event: any) {
+    console.log('Changed datassds: ', $event.source);
+    let currencyRate: any;
+    let currencyName:any;
+    if ($event.source) {
+
+      currencyName = $event.source.value.currency;
+      currencyRate = $event.source.value.rate;
+    } else {
+      currencyRate = '';
+      currencyName = '';
+
+    }
+    this.itemForm.patchValue({
+        currencyName:currencyName,
+        presentRate: currencyRate,
+        total: this.getRupee()
+
+});
+
   }
 
    getTax() {
@@ -177,12 +186,15 @@ const control = <FormArray>this.myForm.controls['items'];
   //    return tax;
    }
    getRupee() {
-    //  let rate = this.myForm.value.items[0].presentRate;
-    //  let amount = this.myForm.value.items[0].amount;
-    //  if (rate && amount) {
-    //     var rupee = rate * amount ;
-    //  }
-    //  return rupee;
+     let rate = this.itemForm.value.presentRate;
+     let amount = this.itemForm.value.amount;
+     if (rate && amount) {
+        var rupee = rate * amount ;
+     }
+     else {
+       rupee = 0;
+     }
+     return rupee;
    }
    getTaxAmount() {
     //  let taxAmount;

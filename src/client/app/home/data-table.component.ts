@@ -6,30 +6,32 @@ import { Component, Input } from '@angular/core';
   templateUrl: 'data-table.component.html',
 })
 export class DataTableComponent {
-  @Input() rows: any;
+  rows = [
+  { currency: 'Dirham', type: 'CN & Coins', amount: 1000, rate: 14,rupee:15000  }
+  ];
 
-  rows = [];
 
   selected = [];
 
   columns = [
-  { prop: 'currency' },
-  { name: 'Type' },
-  { name: 'Amount' },
-  { name: 'Rate' },
-  { name: 'Rupee' }
-  ];
+   { prop: 'currency' },
+   { name: 'Type' },
+   { name: 'Amount' },
+   { name: 'Rate' },
+   { name: 'Rupee' }
 
+];
   constructor() {
-    this.fetch((data) => {
-      this.selected = [data[2]];
-      this.rows = data;
-    });
+    // this.fetch((data) => {
+    //   this.selected = [data[2]];
+    //   this.rows = data;
+    //   debugger
+    // });
   }
 
   fetch(cb) {
     // const req = new XMLHttpRequest();
-    // req.open('GET', `assets/data/company.json`);
+    // req.open('GET', 'src/client/app/assets/data/company.json');
     //
     // req.onload = () => {
     //   cb(JSON.parse(req.response));
@@ -47,8 +49,8 @@ export class DataTableComponent {
   }
 
   updateRowPosition() {
-    let ix = this.getSelectedIx();
-    let arr = [ ...this.rows ];
+    const ix = this.getSelectedIx();
+    const arr = [ ...this.rows ];
     arr[ix - 1] = this.rows[ix];
     arr[ix] = this.rows[ix - 1];
     this.rows = arr;
