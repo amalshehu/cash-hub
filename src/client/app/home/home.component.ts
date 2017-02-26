@@ -34,14 +34,16 @@ export class HomeComponent implements OnInit {
   tax:number = 16;
   serialNumber:number = 47020;
   rows = [
+  { currency: 'Dirham', type: 'CN & Coins', amount: 1000, rate: 14,rupee:15000  },
   { currency: 'Dirham', type: 'CN & Coins', amount: 1000, rate: 14,rupee:15000  }
+
   ];
   columns = [
-  { prop: 'currency' },
-  { name: 'Type' },
+  { prop: 'currencyName' },
+  { name: 'currencyType' },
   { name: 'Amount' },
-  { name: 'Rate' },
-  { name: 'Rupee' }
+  { name: 'presentRate' },
+  { name: 'total' }
   ];
   //  dataModel:any;
    presentRate = '';

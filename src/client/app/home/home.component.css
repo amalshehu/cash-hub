@@ -7,17 +7,13 @@
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 
+
 .md_select md2-select
 {
 	width: 10%;
-	font-size: 15px;
+	font-size: 14px;
 }
-.register_card
-{
-	/*background-color: #2f9df4;*/
-	border-top-left-radius: 15px;
-	border-bottom-left-radius: 15px;
-}
+
 .card {
     background-color: #fff;
     bottom: 0;
@@ -85,7 +81,9 @@ md-sidenav-layout.m2app-dark {
 .app-content md-checkbox {
   margin: 10px;
 }
-
+.app-content md-checkbox {
+  margin: 10px;
+}
 .app-toolbar-filler {
   flex: 1 1 auto;
 }
@@ -156,11 +154,15 @@ md-sidenav-layout.m2app-dark {
   }
 
   .mat-input-container {
-    margin-top: 16px;
+    margin-top: 14px;
   }
 }
 
 .demo-secondary-text {
   color: rgba(0, 0, 0, 0.54);
   margin-left: 8px;
+}
+.button-align button
+{
+  margin: 0em 1.5em 0px 0px;
 }

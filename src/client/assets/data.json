@@ -4,7 +4,7 @@
   "name": "Qatar",
   "code": "QAR",
   "currency": "Qatar Riyal",
-  "rate": null,
+  "rate": 25,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.720Z"
 }, {
@@ -13,7 +13,7 @@
   "name": "Saudi Arabia",
   "code": "SAR",
   "currency": "Saudi Riyal",
-  "rate": null,
+  "rate": 21,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.724Z"
 }, {
@@ -22,7 +22,7 @@
   "name": "Baharin ",
   "code": "BHD",
   "currency": "Baharin Dinar",
-  "rate": null,
+  "rate": 20,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.725Z"
 }, {
@@ -31,7 +31,7 @@
   "name": "Oman",
   "code": "OMR",
   "currency": "Oman Riyal",
-  "rate": null,
+  "rate": 22,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.725Z"
 }, {
@@ -40,7 +40,7 @@
   "name": "America",
   "code": "USD",
   "currency": "US Dollars",
-  "rate": null,
+  "rate": 65,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.725Z"
 }, {
@@ -49,7 +49,7 @@
   "name": "Singapore ",
   "code": "SGD",
   "currency": "Singapore Dollar",
-  "rate": null,
+  "rate": 60,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.725Z"
 }, {
@@ -58,7 +58,7 @@
   "name": "Australia",
   "code": "ASD",
   "currency": "Australian Dollar",
-  "rate": null,
+  "rate": 66,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.725Z"
 }, {
@@ -67,7 +67,7 @@
   "name": "Sweeden",
   "code": "CHF",
   "currency": "Swiss Franc",
-  "rate": null,
+  "rate": 64,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.725Z"
 }, {
@@ -76,7 +76,7 @@
   "name": "Europe",
   "code": "EURO",
   "currency": "EURO",
-  "rate": null,
+  "rate": 55,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.725Z"
 }, {
@@ -85,7 +85,7 @@
   "name": "England",
   "code": "GBP",
   "currency": "Sterlling Pound",
-  "rate": null,
+  "rate": 56,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.725Z"
 }, {
@@ -94,7 +94,7 @@
   "name": "Japan ",
   "code": "YEN",
   "currency": "YEN",
-  "rate": null,
+  "rate": 80,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.725Z"
 }, {
@@ -103,7 +103,7 @@
   "name": "Canada",
   "code": "CAD",
   "currency": "Canadian Dollar",
-  "rate": null,
+  "rate": 66,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.725Z"
 }, {
@@ -112,7 +112,7 @@
   "name": "India",
   "code": "IND",
   "currency": "Rupee",
-  "rate": null,
+  "rate": 1,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.725Z"
 }, {
@@ -121,7 +121,7 @@
   "name": "Kuwait",
   "code": "KD",
   "currency": "Kuwiat Dinar",
-  "rate": null,
+  "rate": 150,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.725Z"
 }, {
@@ -130,7 +130,7 @@
   "name": "Sweeden",
   "code": "Korner",
   "currency": "Korner",
-  "rate": null,
+  "rate": 58,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.726Z"
 }, {
@@ -139,7 +139,7 @@
   "name": "Switzer Land",
   "code": "SF",
   "currency": "Swiss Franc",
-  "rate": null,
+  "rate": 45,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.726Z"
 }, {
@@ -148,7 +148,7 @@
   "name": "Malayasia",
   "code": "MR",
   "currency": "Malayasia Ringitte",
-  "rate": null,
+  "rate": 50,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.726Z"
 }, {
@@ -157,7 +157,7 @@
   "name": "South Africa",
   "code": "SAF",
   "currency": "Rand",
-  "rate": null,
+  "rate": 72,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.726Z"
 }, {
@@ -166,7 +166,7 @@
   "name": "Brunei",
   "code": "Brunei",
   "currency": "Brunei Dollar",
-  "rate": null,
+  "rate": 56,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.727Z"
 }, {
@@ -175,7 +175,7 @@
   "name": "New Zealand",
   "code": "NZD",
   "currency": "New Zealand Dolar",
-  "rate": null,
+  "rate": 70,
   "status": null,
   "createdAt": "2017-02-07T16:59:53.727Z"
 }, {

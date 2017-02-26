@@ -6,8 +6,9 @@ import { Component, Input } from '@angular/core';
   templateUrl: 'data-table.component.html',
 })
 export class DataTableComponent {
-  @Input() rows: any;
-  @Input() columns:any;
+  @Input() rows: any[];
+  @Input() columns:any[];
+
   selected:any = [];
 
   constructor() {
