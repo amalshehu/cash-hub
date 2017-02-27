@@ -113,7 +113,9 @@ export class HomeComponent implements OnInit {
   }
   addItem(itemData:any) {
     this.d = itemData;
-    debugger
+    this.getTotal();
+    // console.log('totalitem' + itemData.items.amount)
+
       //  this.itemForm.control.presentRate.patchValue(data.presentRate);
 //       this.itemForm.patchValue({
 //   presentRate: data.presentRate
@@ -136,7 +138,7 @@ const control = <FormArray>this.myForm.controls['items'];
     // control4.patchValue(total);
         // call API to save
         // ...
-        // this.model = formValue as Currency;
+        this.model = formValue as Currency;
         this.model = formValue.value;
         console.log(this.model);
         // let stringified = JSON.stringify(this.model);
@@ -186,7 +188,8 @@ const control = <FormArray>this.myForm.controls['items'];
         presentRate: currencyRate,
         total: this.getRupee()
 
-});
+      });
+
 
   }
 
@@ -201,16 +204,17 @@ const control = <FormArray>this.myForm.controls['items'];
         var rupee = rate * amount ;
      }
      else {
-       rupee = 0;
+       rupee = 0.00;
      }
      return rupee;
    }
    getTaxAmount() {
-    //  let taxAmount;
-    //  if (this.getRupee()) {
-    //    taxAmount = this.getRupee();
-    //    taxAmount = taxAmount * (10 / 100);
-    //  }
+     let taxAmount ;
+     let total = this.itemForm.value.amount;
+     if (this.getTotal()) {
+       taxAmount = this.getTotal();
+       taxAmount = taxAmount * (10 / 100);
+     }
     //  if (this.myForm.value.items[0].amount) {
     //    return this.myForm.get('items[0].amount').valueChanges
     //        .subscribe(val => {
@@ -218,19 +222,39 @@ const control = <FormArray>this.myForm.controls['items'];
     //        }
     //  );
     //  }
-    // return taxAmount;;
+    return taxAmount;
    }
 
    getTotal() {
-    //  var total = 0;
-    //  for(var i = 0; i === this.myForm.value.items.length; i++) {
-    //     var item = this.myForm.value.items[i];
-    //     total += (item.amount * item.presentRate);
-    //     this.myForm.controls['totalCost'].setValue(total);
-    //     this.myForm.controls['grandTotal']
-    //     .setValue(this.myForm.value.totalCost+this.myForm.value.totalCost*(this.myForm.value.tax/100))
-    //   }
-    //   return total;
+     let total = 0;
+     console.log(this.myForm.value.items.length)
+     for(var i = 1; i <= this.myForm.value.items.length; i++) {
+        let item = this.myForm.value.items[i];
+        if(item) {
+          total += (item.amount * item.presentRate);
+        }
+    //       total += (item.amount * item.presentRate);
+    //       this.myForm.controls['totalCost'].setValue(total);
+    //       this.myForm.controls['grandTotal']
+    //       .setValue(this.myForm.value.totalCost + this.myForm.value.totalCost *(this.myForm.value.tax/100));
+    //     else {
+    //       item.amount = '';
+    //       item.presentRate = '';
+    //     }
+      }
+      this.myForm.controls['totalCost'].setValue(total);
+      return total;
     }
+
+    //  let rate = this.itemForm.value.presentRate;
+    //  let amount = this.itemForm.value.amount;
+    //  if (rate && amount) {
+    //     var rupee = rate * amount ;
+    //  }
+    //  else {
+    //    rupee = 0.00;
+    //  }
+  //    return 100;
+  //  }
 
 }

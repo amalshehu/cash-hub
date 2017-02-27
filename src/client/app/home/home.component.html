@@ -60,9 +60,6 @@
         </div>
         </md-card>
       </div>
-
-
-
       <div class="flex-item" fxFlex="50%">
         <md-card class="app-input-section" style="height: relative">
           <div fxFlex="20%">
@@ -89,10 +86,10 @@
               <input mdInput placeholder="Present rate" [value]="presentRate" formControlName="presentRate">
             </md-input-container>
             <md-input-container>
-              <input mdInput placeholder="Amount" formControlName="amount">
+              <input mdInput placeholder="Amount" formControlName="amount" value="amount">
             </md-input-container>
             <md-input-container>
-              <input mdInput placeholder="Rupee Equivalent" [value]="getRupee()" formControlName="total">
+              <input mdInput placeholder="Rupee Equivalent" [value]="getRupee() | currency:'INR':true" formControlName="total">
             </md-input-container>
           </form>
 
@@ -115,14 +112,16 @@
           <input mdInput placeholder="Tax %" value="{{this.myForm.value.tax}}" formControlName="tax">
         </md-input-container>
         <md-input-container>
-          <input mdInput placeholder="Tax Amount" value="{{getTaxAmount()}}" formControlName="taxAmount">
+          <input mdInput placeholder="Total" formControlName="totalCost" [value]="getTotal() | currency:'INR':true" >
         </md-input-container>
         <md-input-container>
-          <input mdInput placeholder="Total" formControlName="totalCost">
+          <input mdInput placeholder="Tax Amount" value="{{getTaxAmount() | currency:'INR':true}}" formControlName="taxAmount">
         </md-input-container>
         <md-input-container>
-          <input mdInput placeholder="Grand Total" formControlName="grandTotal">
+          <input mdInput placeholder="Grand Total" formControlName="grandTotal" value="grandTotal">
         </md-input-container>
+
+
       </div>
     </md-card>
   </form>
