@@ -73,6 +73,7 @@ export class HomeComponent implements OnInit {
   }
 
     ngOnInit() {
+
     this.currencyType = ['CN & Coins']
     this.getCurrency();
     this.myForm = this.fb.group({
@@ -113,7 +114,6 @@ export class HomeComponent implements OnInit {
   }
   addItem(itemData:any) {
     this.d = itemData;
-    this.getTotal();
     // console.log('totalitem' + itemData.items.amount)
 
       //  this.itemForm.control.presentRate.patchValue(data.presentRate);
@@ -151,25 +151,6 @@ const control = <FormArray>this.myForm.controls['items'];
      error => this.errorMessage = <any>error
    );
   }
-//   handleChange($event: any, i: index) {
-//   console.log($event)
-//   const control: AbstractControl = this.myForm.get(`tempItems.presentRate`);
-//   const control2: AbstractControl = this.myForm.get(`tempItems.currencyName`);
-//
-//
-  // let currencyRate: any;
-  // let currencyName:any;
-  // if ($event.value) {
-  //   currencyName = $event.value.currency;
-  //   currencyRate = $event.value.rate;
-  // } else {
-  //   currencyRate = '';
-  //   currencyName = '';
-  // }
-  // control.patchValue(currencyRate);
-  // control2.patchValue(currencyName);
-//
-// }
   handle($event: any) {
     console.log('Changed datassds: ', $event.source);
     let currencyRate: any;
@@ -209,52 +190,35 @@ const control = <FormArray>this.myForm.controls['items'];
      return rupee;
    }
    getTaxAmount() {
-     let taxAmount ;
+     let taxAmount = 0 ;
      let total = this.itemForm.value.amount;
      if (this.getTotal()) {
        taxAmount = this.getTotal();
        taxAmount = taxAmount * (10 / 100);
      }
-    //  if (this.myForm.value.items[0].amount) {
-    //    return this.myForm.get('items[0].amount').valueChanges
-    //        .subscribe(val => {
-    //          this.myForm.get('taxAmount').updateValueAndValidity(val * 11 )
-    //        }
-    //  );
-    //  }
     return taxAmount;
    }
 
    getTotal() {
      let total = 0;
-     console.log(this.myForm.value.items.length)
      for(var i = 1; i <= this.myForm.value.items.length; i++) {
         let item = this.myForm.value.items[i];
         if(item) {
           total += (item.amount * item.presentRate);
         }
-    //       total += (item.amount * item.presentRate);
-    //       this.myForm.controls['totalCost'].setValue(total);
-    //       this.myForm.controls['grandTotal']
-    //       .setValue(this.myForm.value.totalCost + this.myForm.value.totalCost *(this.myForm.value.tax/100));
-    //     else {
-    //       item.amount = '';
-    //       item.presentRate = '';
-    //     }
       }
-      this.myForm.controls['totalCost'].setValue(total);
       return total;
     }
 
-    //  let rate = this.itemForm.value.presentRate;
-    //  let amount = this.itemForm.value.amount;
-    //  if (rate && amount) {
-    //     var rupee = rate * amount ;
-    //  }
-    //  else {
-    //    rupee = 0.00;
-    //  }
-  //    return 100;
-  //  }
+    getGrand() {
+      let gTotal = 0;
+      let total = this.getTotal();
+      let tax = this.getTaxAmount();
+      if (total && tax) {
+        return gTotal = total + tax;
+
+      }
+       return gTotal;
+    }
 
 }

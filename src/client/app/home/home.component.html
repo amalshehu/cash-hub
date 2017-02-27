@@ -112,13 +112,13 @@
           <input mdInput placeholder="Tax %" value="{{this.myForm.value.tax}}" formControlName="tax">
         </md-input-container>
         <md-input-container>
-          <input mdInput placeholder="Total" formControlName="totalCost" [value]="getTotal() | currency:'INR':true" >
+          <input mdInput placeholder="Total" formControlName="totalCost" value="{{getTotal() | currency:'INR':true}}" >
         </md-input-container>
         <md-input-container>
           <input mdInput placeholder="Tax Amount" value="{{getTaxAmount() | currency:'INR':true}}" formControlName="taxAmount">
         </md-input-container>
         <md-input-container>
-          <input mdInput placeholder="Grand Total" formControlName="grandTotal" value="grandTotal">
+          <input mdInput placeholder="Grand Total" formControlName="grandTotal" value="{{getGrand() | currency:'INR':true}}">
         </md-input-container>
 
 
