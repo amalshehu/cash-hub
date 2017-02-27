@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -8,10 +8,13 @@ import { Component, Input } from '@angular/core';
 export class DataTableComponent {
   @Input() rows: any[];
   @Input() columns:any[];
+  @Output() selector:EventEmitter<any> = new EventEmitter<any>();
 
   selected:any = [];
+  selectr:any;
 
   constructor() {
+    this.selector.emit(this.selectr);
     this.fetch((data) => {
       this.selected = [data[2]];
       this.rows = data;
@@ -35,6 +38,8 @@ export class DataTableComponent {
 
   onActivate(event) {
     console.log('Activate Event', event);
+    this.selectr = event;
+   debugger
   }
 
   updateRowPosition() {

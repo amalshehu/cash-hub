@@ -24,11 +24,7 @@ export class HomeComponent implements OnInit {
   errorMessage:any;
   currency:any;
   currencyValue:any;
-  selectedValue: string;
-  items:any = [];
-  item :any;
-  temp:any={};
-  temps:any=[];
+  selctedValue: any;
   model:Currency;
   currencyType:string[];
   tax:number = 16;
@@ -52,14 +48,10 @@ export class HomeComponent implements OnInit {
    constructor(
      public nameListService: NameListService,
      private fb: FormBuilder) {
-    //  this.currency = {};
-    //  this.model = {};
-    //  this.model.items. = [];
-    this.item = {};
-    this.stateCtrl = new FormControl();
-    this.rateCtrl = new FormControl();
-    this.d = {};
-    this.reactiveStates = this.stateCtrl.valueChanges
+     this.stateCtrl = new FormControl();
+     this.rateCtrl = new FormControl();
+     this.d = {};
+     this.reactiveStates = this.stateCtrl.valueChanges
        .startWith(this.stateCtrl.value)
        .map(val => this.displayFn(val))
        .map(name => this.filterStates(name));
@@ -73,7 +65,7 @@ export class HomeComponent implements OnInit {
   }
 
     ngOnInit() {
-
+    this.handleSelect(event);
     this.currencyType = ['CN & Coins']
     this.getCurrency();
     this.myForm = this.fb.group({
@@ -112,6 +104,11 @@ export class HomeComponent implements OnInit {
     });
 
   }
+  handleSelect(event) {
+    this.selctedValue = event;
+    debugger
+    console.log(this.selctedValue)
+ }
   addItem(itemData:any) {
     this.d = itemData;
     // console.log('totalitem' + itemData.items.amount)
@@ -128,7 +125,7 @@ const control = <FormArray>this.myForm.controls['items'];
 
   removeItem(i: number) {
       const control = <FormArray>this.myForm.controls['items'];
-      control.removeAt(i);
+      control.removeAt(0);
   }
   save(formValue:any) {
     // const control3: AbstractControl = this.myForm.get(`items.${i}.amount`);
