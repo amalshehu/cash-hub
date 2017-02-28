@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   currencyType: string[];
   tax: number = 16;
   serialNumber: number = 47020;
+  rows:any[];
   columns = [
     { prop: 'currencyName' },
     { name: 'currencyType' },
@@ -94,7 +95,7 @@ export class HomeComponent implements OnInit {
       currencyType: [this.d.currencyType],
       amount: [this.d.amount],
       presentRate: [this.d.presentRate],
-      total: [{ value: '', disabled: true }, [Validators.minLength(2)]]
+      total: [this.d.total]
     });
 
   }
@@ -103,7 +104,8 @@ export class HomeComponent implements OnInit {
   }
   addItem(itemData: any) {
     this.d = itemData;
-
+    this.d.total = this.getRupee();
+    debugger
     const control = <FormArray>this.myForm.controls['items'];
     control.push(this.initItem());
     let val = control.at(0);

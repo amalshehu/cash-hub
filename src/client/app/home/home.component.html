@@ -94,7 +94,7 @@
           </form>
 
           <div class="flex-item" fxFlex>
-            <button md-raised-button color="primary" (ngSubmit)="save(myForm.value)">Save</button >
+            <button md-raised-button color="primary"  class="button" (ngSubmit)="save(myForm.value)">Save</button >
             <button md-raised-button color="primary" (click)="addItem(itemForm.value)" >Add</button>
             <button md-raised-button color="warn" (click)="removeItem()">Remove selected currency</button>
             <button md-raised-button>Edit</button>
@@ -104,7 +104,7 @@
     </div>
     <md-card class="app-input-section" fxFlex="100%" fxLayoutAlign="space-around center">
       <!-- Current items:{{myForm.controls.items.controls.length}} -->
-      <div class="flex-item" fxFlex="60%" fxFlex.xs="40%" align="end" style="box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)">
+      <div class="flex-item" fxFlex="60%" fxFlex.xs="40%" align="end" >
         <sd-data-table (change)="selectChange($event)" [rows]="myForm.controls.items.value" [columns]="columns"></sd-data-table>
         <!-- <pre>{{select  | json}}</pre> -->
       </div>
