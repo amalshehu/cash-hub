@@ -166,3 +166,11 @@ md-sidenav-layout.m2app-dark {
 {
   margin: 0em 1.5em 0px 0px;
 }
+:host /deep/ .mat-select-trigger {
+    font-size: 15px;
+    /*height: inherit;*/
+}
+
+:host /deep/ .mat-select-value-text {
+	  font-size: 15px;
+}

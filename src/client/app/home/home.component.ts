@@ -28,11 +28,6 @@ export class HomeComponent implements OnInit {
   currencyType: string[];
   tax: number = 16;
   serialNumber: number = 47020;
-  rows = [
-    { currency: 'Dirham', type: 'CN & Coins', amount: 1000, rate: 14, rupee: 15000 },
-    { currency: 'Dirham', type: 'CN & Coins', amount: 1000, rate: 14, rupee: 15000 }
-
-  ];
   columns = [
     { prop: 'currencyName' },
     { name: 'currencyType' },
@@ -64,7 +59,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.handleSelect(event);
+    this.selectChange(event);
     this.currencyType = ['CN & Coins']
     this.getCurrency();
     this.myForm = this.fb.group({
@@ -103,9 +98,8 @@ export class HomeComponent implements OnInit {
     });
 
   }
-  handleSelect(event) {
+  selectChange(event) {
     this.selctedValue = event;
-    console.log(this.selctedValue)
   }
   addItem(itemData: any) {
     this.d = itemData;
@@ -113,16 +107,14 @@ export class HomeComponent implements OnInit {
     const control = <FormArray>this.myForm.controls['items'];
     control.push(this.initItem());
     let val = control.at(0);
-    debugger
     if (val.value.currencyName === null ) {
-      debugger
       control.removeAt(0);
     }
   }
 
   removeItem(i: number) {
     const control = <FormArray>this.myForm.controls['items'];
-    control.removeAt(0);
+    control.removeAt(this.selctedValue);
   }
   save(formValue: any) {
     // const control3: AbstractControl = this.myForm.get(`items.${i}.amount`);

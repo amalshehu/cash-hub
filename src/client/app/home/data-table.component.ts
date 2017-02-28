@@ -8,13 +8,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class DataTableComponent {
   @Input() rows: any[];
   @Input() columns:any[];
-  @Output() selector:EventEmitter<any> = new EventEmitter<any>();
+  @Output() change: EventEmitter<number> = new EventEmitter<number>();
 
   selected:any = [];
-  selectr:any;
+  selectId:any;
 
   constructor() {
-    this.selector.emit(this.selectr);
     this.fetch((data) => {
       this.selected = [data[2]];
       this.rows = data;
@@ -38,8 +37,7 @@ export class DataTableComponent {
 
   onActivate(event) {
     console.log('Activate Event', event);
-    this.selectr = event;
-   debugger
+    this.change.emit(event.row.$$index);
   }
 
   updateRowPosition() {

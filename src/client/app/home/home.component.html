@@ -6,15 +6,15 @@
           <md-input-container class="example-full-width">
             <input mdInput placeholder="Serial number" disabled value="Serial number" [value]="serialNumber">
           </md-input-container>
-            <div fxFlex="45%" fxLayoutAlign="start" style="margin-right: 38px;">
-          <md-input-container class="example-full-width">
-            <input mdInput placeholder="Name" formControlName="name">
-            <span md-prefix>
+          <div fxFlex="45%" fxLayoutAlign="start" style="margin-right: 38px;">
+            <md-input-container class="example-full-width">
+              <input mdInput placeholder="Name" formControlName="name">
+              <span md-prefix>
             <i class="material-icons app-input-icon">&#xE85E;</i>
               &nbsp;
             </span>
-          </md-input-container>
-            </div>
+            </md-input-container>
+          </div>
           <md-input-container class="example-full-width2">
             <textarea mdInput placeholder="Address" formControlName="address"></textarea>
             <span md-prefix class="linkIcon">
@@ -43,38 +43,38 @@
               &nbsp;
             </span>
           </md-input-container>
-          <div class="flex-container" fxLayout="row" fxLayoutAlign="start"  >
-             <div class="flex-item" fxFlex="50%" fxFlexAlign="auto" >
-          <md-input-container >
-            <input mdInput placeholder="ID Card No." formControlName="idNumber">
-            <span md-prefix>
+          <div class="flex-container" fxLayout="row" fxLayoutAlign="start">
+            <div class="flex-item" fxFlex="50%" fxFlexAlign="auto">
+              <md-input-container>
+                <input mdInput placeholder="ID Card No." formControlName="idNumber">
+                <span md-prefix>
             <i class="material-icons app-input-icon">fingerprint</i>
               &nbsp;
             </span>
-          </md-input-container>
-        </div>
-          <div fxFlex="40%" fxFlexAlign="auto" >
-          <md2-autocomplete [items]="currency" item-text="name" item-value="name" placeholder="Nationality" formControlName="nationality" >
-          </md2-autocomplete>
+              </md-input-container>
+            </div>
+            <div fxFlex="40%" fxFlexAlign="auto">
+              <md2-autocomplete [items]="currency" item-text="name" item-value="name" placeholder="Nationality" formControlName="nationality">
+              </md2-autocomplete>
+            </div>
           </div>
-        </div>
         </md-card>
       </div>
       <div class="flex-item" fxFlex="50%">
         <md-card class="app-input-section" style="height: relative">
           <div fxFlex="20%">
-          <md2-datepicker formControlName="date"></md2-datepicker>
-        </div>
-          <form class="example-form" [formGroup]="itemForm" novalidate (ngSubmit)="addItem(itemForm.value)">
-            <div fxFlex="30%">
-            <md-select placeholder="Currency type" formControlName="currencyType" >
-              <md-option *ngFor="let type of currencyType" [value]="type">
-                {{type}}
-              </md-option>
-            </md-select>
+            <md2-datepicker formControlName="date"></md2-datepicker>
           </div>
+          <form class="example-form" [formGroup]="itemForm" novalidate (ngSubmit)="addItem(itemForm.value)">
+            <div fxFlex="25%">
+              <md-select placeholder="Type" formControlName="currencyType">
+                <md-option *ngFor="let type of currencyType" [value]="type">
+                  {{type}}
+                </md-option>
+              </md-select>
+            </div>
             <md-input-container>
-              <input mdInput placeholder="Currency purchased" [mdAutocomplete]="reactiveAuto" [formControl]="stateCtrl">
+              <input mdInput placeholder="Currency Purchased" [mdAutocomplete]="reactiveAuto" [formControl]="stateCtrl">
             </md-input-container>
             <md-autocomplete #reactiveAuto="mdAutocomplete" [displayWith]="displayFn">
               <md-option (onSelect)="handle($event)" *ngFor="let currency of reactiveStates | async" [value]="currency">
@@ -83,7 +83,7 @@
               </md-option>
             </md-autocomplete>
             <md-input-container>
-              <input mdInput placeholder="Present rate" [value]="presentRate" formControlName="presentRate">
+              <input mdInput placeholder="Present Rate" [value]="presentRate" formControlName="presentRate">
             </md-input-container>
             <md-input-container>
               <input mdInput placeholder="Amount" formControlName="amount" value="amount">
@@ -104,8 +104,8 @@
     </div>
     <md-card class="app-input-section" fxFlex="100%" fxLayoutAlign="space-around center">
       <!-- Current items:{{myForm.controls.items.controls.length}} -->
-      <div class="flex-item" fxFlex="50%" fxFlex.xs="40%" align="end" style="box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)">
-        <sd-data-table (selector)="handleSelect($event)" [rows]="myForm.controls.items.value" [columns]="columns" #select></sd-data-table>
+      <div class="flex-item" fxFlex="60%" fxFlex.xs="40%" align="end" style="box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)">
+        <sd-data-table (change)="selectChange($event)" [rows]="myForm.controls.items.value" [columns]="columns"></sd-data-table>
         <!-- <pre>{{select  | json}}</pre> -->
       </div>
       <div class="flex-item" fxFlex="30%" style="margin-left: auto">
@@ -113,7 +113,7 @@
           <input mdInput placeholder="Tax %" value="{{this.myForm.value.tax}}" formControlName="tax">
         </md-input-container>
         <md-input-container>
-          <input mdInput placeholder="Total" formControlName="totalCost" value="{{getTotal() | currency:'INR':true}}" >
+          <input mdInput placeholder="Total" formControlName="totalCost" value="{{getTotal() | currency:'INR':true}}">
         </md-input-container>
         <md-input-container>
           <input mdInput placeholder="Tax Amount" value="{{getTaxAmount() | currency:'INR':true}}" formControlName="taxAmount">
