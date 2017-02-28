@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, Inject } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { NameListService } from '../shared/name-list/name-list.service';
 import { Currency } from '../currency.interface';
 import 'rxjs/add/operator/startWith';
-
+import { CurrencyService } from '../currency.service';
 /**
  * This class represents the lazy loaded HomeComponent.
  */
@@ -46,7 +45,7 @@ export class HomeComponent implements OnInit {
   reactiveStates: any;
   d: any;
   constructor(
-    public nameListService: NameListService,
+    public nameListService: CurrencyService,
     private fb: FormBuilder) {
     this.stateCtrl = new FormControl();
     this.rateCtrl = new FormControl();
