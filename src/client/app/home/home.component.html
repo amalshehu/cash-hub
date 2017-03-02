@@ -94,7 +94,7 @@
           </form>
 
           <div class="flex-item" fxFlex>
-            <button md-raised-button color="primary"  class="button" (ngSubmit)="save(myForm.value)">Save</button >
+            <button md-raised-button color="primary"  class="button" (ngSubmit)="save(myForm.value)" (click)="openDialog()" >Save</button >
             <button md-raised-button color="primary" (click)="addItem(itemForm.value)" >Add</button>
             <button md-raised-button color="warn" (click)="removeItem()">Remove selected currency</button>
             <button md-raised-button >Edit</button>

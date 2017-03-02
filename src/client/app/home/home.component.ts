@@ -3,6 +3,8 @@ import { AbstractControl, FormArray, FormControl, FormGroup, Validators, FormBui
 import { Currency } from '../currency.interface';
 import 'rxjs/add/operator/startWith';
 import { CurrencyService } from '../currency.service';
+import {MdDialog, MdDialogRef} from '@angular/material';
+
 /**
  * This class represents the lazy loaded HomeComponent.
  */
@@ -19,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   filteredStates: any;
   rateCtrl: FormControl;
-
+  selectedOption: string;
   errorMessage: any;
   currency: any;
   currencyValue: any;
@@ -42,7 +44,8 @@ export class HomeComponent implements OnInit {
   d: any;
   constructor(
     public nameListService: CurrencyService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    public dialog: MdDialog) {
     this.stateCtrl = new FormControl();
     this.rateCtrl = new FormControl();
     this.d = {};
@@ -99,6 +102,13 @@ export class HomeComponent implements OnInit {
     });
 
   }
+  openDialog() {
+    let dialogRef = this.dialog.open(DialogResultExampleDialog);
+    dialogRef.afterClosed().subscribe(result => {
+      this.selectedOption = result;
+    });
+  }
+
   selectChange(event) {
     this.selctedValue = event;
   }
@@ -209,4 +219,15 @@ export class HomeComponent implements OnInit {
     return gTotal;
   }
 
+}
+
+
+@Component({
+  selector: 'dialog-result-example-dialog',
+  templateUrl: `
+    Hiiii
+  `,
+})
+export class DialogResultExampleDialog {
+  constructor(public dialogRef: MdDialogRef<DialogResultExampleDialog>) {}
 }
