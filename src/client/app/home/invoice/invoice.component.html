@@ -1,0 +1,86 @@
+
+
+  <div id="print-section" >
+  <pre style="line-height:0.5; text-align: justify;  text-justify: inter-word;">
+      <div style="text-align:center" ><b><h3>ANNEXURE "X" -ENCASHMENT CERTIFICATE</h3></b></div>
+      <div style="text-align:center">Ashmxmz</div>
+      <div style="text-align:center">Foreign Currency Exchange</div>
+
+      <div style="text-align:center">(Valid for three months from the date of purchase of foreign currency )</div>
+      <div style="text-align:center">Agent -License No. AXX - xxx II/No. 1/xxxx</div>
+    <hr>
+      <div style="text-align:center" ><b>Encashment Certificate</b></div>
+      <br>
+      Serial No: {{printData?.serialNumber}}                    Date:- {{ printData?.date | date:'fullDate' }}
+  </pre>
+  <!--</div>-->
+  <pre style="line-height:1.5;">
+      
+      We hereby certify that we have purchased today foreign currency from ................
+      ............{{printData?.name}}...................holder of passport No..............
+      ...{{printData?.idNumber}}....Nationality....{{printData?.nationality}}.....and paid net amount in Rupees 
+      after adjusting the amount towards settlement of bills for goods supplied/services 
+      rended as per detiails given below:
+      
+      A.Details of Foreign Currency Notes/Coins/Travellers Cheques purchased
+      <div class="flex-item" fxFlex="80%" fxFlex.xs="5%" align="center" >
+      <table style="width: 80%;  margin-top: -50px">
+        <tr >
+          <th>Currency Purchased </th>
+          <th>Amount</th>
+          <th>Rate</th>
+          <th>Rupee Equivalent</th>
+        </tr>
+        <tr *ngFor="let item of printData.items" style="text-align: center">
+          <td>{{item?.currencyName}}</td>
+          <td>{{item?.amount | currency:'INR':true}}</td>
+          <td>{{item?.presentRate | currency:'INR':true}}</td>
+          <td>{{item?.total | currency:'INR':true}}</td>
+        </tr>
+        <tr>
+          <td>Travelers Cheques</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+      </div>
+      B. Detials of adjustments made towards settlement of bills gor goods supplied/services
+      rendered
+    <div class="flex-item" fxFlex="80%" align="center">
+   <table style="width: 80%;  margin-top: -50px" >
+     <tr>
+       <th>BIll No.(s) </th>
+       <th>Date (s) </th>
+       <th>Amount </th>
+     </tr>
+     <tr>
+       <td>&nbsp;</td>
+       <td>&nbsp;</td>
+       <td>&nbsp;</td>
+     </tr>
+     <tr>
+       <td>&nbsp;</td>
+       <td>&nbsp;</td>
+       <td>&nbsp;</td>
+     </tr>
+   </table>
+    </div>
+                                                                   Total ....{{printData?.totalCost| currency:'INR':true}}.....
+
+      C. Net amount paid in Rupees: ...{{printData?.totalCost| currency:'INR':true}}........ Amount in words...................
+
+             Service Tax: ..{{printData?.taxAmount | currency:'INR':true}}....                   Grand Total: ...{{printData?.grandTotal | currency:'INR':true}}...........
+
+       ..........................
+         (Customer Signature)
+                                                        (Signature and Stamp of Authorised Signatory)
+
+                                                        Name: .....................................
+                                                        Designation:...............................
+
+      Note:Ths certificate should be preserved by the holder to facilitate reconversion of the Rupee
+      balance, (out of the amount stated at C) if any, into foreign currency at the time of 
+      departure from India an/or for payment of passage /frieght cost in Rupees, if necessary.
+   </pre>
+ </div>

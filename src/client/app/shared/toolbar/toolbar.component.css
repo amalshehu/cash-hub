@@ -30,3 +30,7 @@ h1 {
   padding: 0 14px 0 14px;
   color: white;
 }
+.mat-toolbar.mat-primary {
+    background: #9C27B0;
+    color: white;
+}

@@ -10,6 +10,7 @@ export interface Currency {
   nationality: string;
   totalCost: number;
   tax: number;
+  taxAmount:number;
   taxTotal: number;
   grandTotal: number;
   items: Item[];

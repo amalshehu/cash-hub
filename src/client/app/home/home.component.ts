@@ -1,9 +1,10 @@
+import { InvoiceComponent } from './invoice/invoice.component';
 import { Component, EventEmitter, Input, OnInit, Output, Inject } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Currency } from '../currency.interface';
 import 'rxjs/add/operator/startWith';
 import { CurrencyService } from '../currency.service';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import { MdDialog, MdDialogRef } from '@angular/material';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -14,7 +15,9 @@ import {MdDialog, MdDialogRef} from '@angular/material';
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
 })
+
 export class HomeComponent implements OnInit {
+    tax: any;
   public myForm: FormGroup;
   public itemForm: any;
   stateCtrl: FormControl;
@@ -28,8 +31,8 @@ export class HomeComponent implements OnInit {
   selctedValue: any;
   model: Currency;
   currencyType: string[];
-  tax: number = 16;
-  serialNumber: number = 47020;
+  taxCtrl: FormControl;
+  serialNumber: number;
   rows:any[];
   columns = [
     { prop: 'currencyName' },
@@ -42,17 +45,27 @@ export class HomeComponent implements OnInit {
   presentRate = '';
   reactiveStates: any;
   d: any;
+  printData:any;
+  dialogRef: MdDialogRef<any>;
+  setting:any;
   constructor(
-    public nameListService: CurrencyService,
+    public currencyservice: CurrencyService,
     private fb: FormBuilder,
-    public dialog: MdDialog) {
+    public dialog: MdDialog,
+    public invoice: InvoiceComponent
+    ) {
     this.stateCtrl = new FormControl();
-    this.rateCtrl = new FormControl();
+    this.taxCtrl = new FormControl();
+    this.setting = {};
+    this.setting.cash = {};
+    this.setting.keys = {};
     this.d = {};
+    this.printData = {};
     this.reactiveStates = this.stateCtrl.valueChanges
       .startWith(this.stateCtrl.value)
       .map(val => this.displayFn(val))
       .map(name => this.filterStates(name));
+
   }
   displayFn(value: any): string {
     return value && typeof value === 'object' ? value.currency : value;
@@ -61,22 +74,25 @@ export class HomeComponent implements OnInit {
   filterStates(val: string) {
     return val ? this.currency.filter((s) => s.name.match(new RegExp(val, 'gi'))) : this.currency;
   }
-
+   filterCountry(val: string) {
+    return val ? this.currency.filter((s) => s.name.match(new RegExp(val, 'gi'))) : this.currency;
+  }
   ngOnInit() {
+    this.getSettings();
     this.selectChange(event);
-    this.currencyType = ['CN & Coins']
+    this.currencyType = ['CN & Coins'];
     this.getCurrency();
     this.myForm = this.fb.group({
+      serialNumber: [1000, [Validators.required, Validators.minLength(2)]],
       name: ['', [Validators.required, Validators.minLength(2)]],
       date: ['', [Validators.required, Validators.minLength(2)]],
       address: ['', [Validators.required, Validators.minLength(2)]],
       remarks: ['', [Validators.required, Validators.minLength(2)]],
-      serialNumber: [this.serialNumber],
       idNumber: ['', [Validators.required, Validators.minLength(2)]],
       phoneNumber: ['', [Validators.required, Validators.minLength(2)]],
       mobileNumber: ['', [Validators.required, Validators.minLength(2)]],
       nationality: [''],
-      tax: [this.tax],
+      tax: [''],
       totalCost: [{ value: '', disabled: true }, [Validators.minLength(2)]],
       taxAmount: [{ value: '', disabled: true }, [Validators.minLength(2)]],
       grandTotal: [{ value: '', disabled: true }, [Validators.minLength(2)]],
@@ -87,10 +103,21 @@ export class HomeComponent implements OnInit {
     this.itemForm = this.fb.group({
       currencyName: [''],
       currencyType: [''],
-      amount: [''],
-      presentRate: [''],
-      total: [{ value: '', disabled: true }, [Validators.minLength(2)]]
+      amount: [],
+      presentRate: [],
+      total: [{ value: [], disabled: true }, [Validators.minLength(2)]]
     });
+     this.taxCtrl.valueChanges.subscribe(data => {
+      console.log('Form changes', data);
+      this.tax = data;
+      const control: AbstractControl = this.myForm.get('tax');
+      control.patchValue(data);
+
+    });
+   //  this.initItem[totalCost].valueChanges.subscribe(data => {
+  //     console.log('Form changes', data)
+  //     this.output = data
+  //   })
   }
   initItem() {
     return this.fb.group({
@@ -98,30 +125,60 @@ export class HomeComponent implements OnInit {
       currencyType: [this.d.currencyType],
       amount: [this.d.amount],
       presentRate: [this.d.presentRate],
-      total: [this.d.total]
+      total: [this.d.total],
     });
 
   }
-  openDialog() {
-    let dialogRef = this.dialog.open(DialogResultExampleDialog);
+  openDialog(data) {
+    // console.log(data);
+    let dialogRef = this.dialog.open(DialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
+      if(this.selectedOption === 'print') {
+        console.log('Print' + this.printData);
+
+        this.invoice.print(this.printData);
+      }
+      if(this.selectedOption === 'save') {
+        debugger
+        this.save(data);
+        this.currencyservice.create(this.model)
+        .subscribe(
+                data => {
+                  console.log('Purchase confirmed');
+                },
+                error =>
+                      this.errorMessage = <any>error);
+        this.myForm.reset();
+        this.itemForm.reset();
+        this.stateCtrl.reset();
+      }
     });
   }
 
   selectChange(event) {
     this.selctedValue = event;
   }
+  printInvoice(){
+    debugger
+    this.invoice.print(this.myForm.value);
+
+  }
+  reset(){
+    this.myForm.reset();
+    this.itemForm.reset();
+        this.stateCtrl.reset();
+  }
   addItem(itemData: any) {
     this.d = itemData;
     this.d.total = this.getRupee();
-    debugger
     const control = <FormArray>this.myForm.controls['items'];
     control.push(this.initItem());
     let val = control.at(0);
     if (val.value.currencyName === null ) {
       control.removeAt(0);
     }
+
   }
 
   removeItem(i: number) {
@@ -129,28 +186,29 @@ export class HomeComponent implements OnInit {
     control.removeAt(this.selctedValue);
   }
   save(formValue: any) {
-    // const control3: AbstractControl = this.myForm.get(`items.${i}.amount`);
-    // const control4: AbstractControl = this.myForm.get(`items.${i}.total`);
-    // let total = control3.value;
-    // console.log(total);
-    // control4.patchValue(total);
     // call API to save
     // ...
-    this.model = formValue as Currency;
-    this.model = formValue.value;
+
+     this.model = formValue as Currency;
+    this.model = formValue;
     console.log(this.model);
-    // let stringified = JSON.stringify(this.model);
-    // this.model = JSON.parse(stringified);
+    let stringified = JSON.stringify(this.model);
+    this.model = JSON.parse(stringified);
+     this.model.grandTotal = this.getGrand();
+    this.model.taxAmount = this.getTaxAmount();
+    this.model.totalCost = this.getTotal();
+    console.log( 'this.model' + this.model);
+    this.printData = this.model;
+    debugger
   }
   getCurrency() {
-    this.nameListService.get()
+    this.currencyservice.get()
       .subscribe(
       currency => this.currency = currency,
       error => this.errorMessage = <any>error
       );
   }
   handle($event: any) {
-    console.log('Changed datassds: ', $event.source);
     let currencyRate: any;
     let currencyName: any;
     if ($event.source) {
@@ -166,19 +224,26 @@ export class HomeComponent implements OnInit {
       currencyName: currencyName,
       presentRate: currencyRate,
       total: this.getRupee()
-
     });
-
+   
 
   }
+   getSettings() {
+        this.currencyservice.staticSettings()
+            .subscribe(
+                setting => {
+                  this.setting = setting;
+                  this.serialNumber = setting.keys.serialNumber;
+                  this.taxCtrl.setValue(setting.keys.tax);
+                      console.log('Settings Recieved');
+                },
+                error =>
+                      this.errorMessage = <any>error);
+  };
 
-  getTax() {
-    //    var tax = this.myForm.value.tax =10;
-    //    return tax;
-  }
   getRupee() {
-    let rate = this.itemForm.value.presentRate;
-    let amount = this.itemForm.value.amount;
+    let rate:number = this.itemForm.value.presentRate;
+    let amount:number = this.itemForm.value.amount;
     if (rate && amount) {
       var rupee = rate * amount;
     }
@@ -188,46 +253,58 @@ export class HomeComponent implements OnInit {
     return rupee;
   }
   getTaxAmount() {
-    let taxAmount = 0;
-    let total = this.itemForm.value.amount;
+    let taxAmount = 0.00;
+    let total = parseFloat(this.itemForm.value.amount);
     if (this.getTotal()) {
       taxAmount = this.getTotal();
-      taxAmount = taxAmount * (10 / 100);
+      taxAmount = (Math.round(taxAmount * (this.taxCtrl.value / 100)*100)/100);
+       const control: AbstractControl = this.myForm.get('taxAmount');
+      control.patchValue(taxAmount);
     }
     return taxAmount;
   }
 
   getTotal() {
-    let total = 0;
+    let total = 0.00;
     for (var i = 0; i <= this.myForm.value.items.length; i++) {
       let item = this.myForm.value.items[i];
       if (item) {
-        total += (item.amount * item.presentRate);
+        total += (Math.round(item.amount * item.presentRate*100)/100);
+        const control: AbstractControl = this.myForm.get('totalCost');
+        control.patchValue(total);
+
+
       }
     }
     return total;
   }
 
   getGrand() {
-    let gTotal = 0;
+    let gTotal = 0.00;
     let total = this.getTotal();
     let tax = this.getTaxAmount();
     if (total && tax) {
-      return gTotal = total + tax;
+      gTotal=(Math.round((total + tax)*100)/100);
+      const control: AbstractControl = this.myForm.get('grandTotal');
+      control.patchValue(gTotal);
+      return gTotal;
 
     }
     return gTotal;
   }
-
 }
 
-
 @Component({
-  selector: 'dialog-result-example-dialog',
-  templateUrl: `
-    Hiiii
-  `,
+  selector: 'print-dialog',
+  template: `
+<div md-dialog-content>What would you like to print?</div>
+<div md-dialog-actions>
+  <button md-button color = "primary"(click)="dialogRef.close('print')">Print & Save</button>
+  <button md-button color="warn" (click)="dialogRef.close('save')">Done</button>
+</div>
+
+  `
 })
-export class DialogResultExampleDialog {
-  constructor(public dialogRef: MdDialogRef<DialogResultExampleDialog>) {}
+export class DialogComponent {
+  constructor(public dialogRef: MdDialogRef<any>) { }
 }
