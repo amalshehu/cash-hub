@@ -10,8 +10,8 @@ const plugins = <any>gulpLoadPlugins();
 const getTask = (target: string, destDir: string) => {
   return gulp.src(join(destDir, target))
     .pipe(plugins.uglify({
-      compress: true,
-      mangle: true
+      compress: false,
+      mangle: false
     }))
     .pipe(gulp.dest(destDir));
 };

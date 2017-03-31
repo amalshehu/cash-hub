@@ -29,9 +29,14 @@ export class ProjectConfig extends SeedConfig {
     this.APP_ASSETS = [
       ...this.APP_ASSETS,
       /* Select a pre-built Material theme */
-     {src: '@angular/material/core/theming/prebuilt/indigo-pink.css', inject: true}
+     {src: '@angular/material/core/theming/prebuilt/indigo-pink.css', inject: true},
 
-      // {src: `${this.CSS_SRC}/path-to-lib/test-lib.css`, inject: true, vendor: false},
+     {src: '@swimlane/ngx-datatable/release/material.css', inject: true},
+     {src: '@swimlane/ngx-datatable/release/assets/icons.css', inject: true},
+     {src: '@swimlane/ngx-datatable/release/datatable.css', inject: true},
+    //  {src: '@swimlane/ngx-datatable/release/datatable.css', inject: true},
+
+
     ];
     this.addPackageBundles({
       name:'@angular/flex-layout',

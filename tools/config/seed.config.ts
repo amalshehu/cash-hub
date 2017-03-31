@@ -398,6 +398,7 @@ export class SeedConfig {
     base: this.PROJECT_ROOT,
     packageConfigPaths: [
       join('node_modules', '*', 'package.json'),
+      join('node_modules', '@swimlane','*', 'package.json'),
       join('node_modules', '@angular', '*', 'package.json')
     ],
     paths: {

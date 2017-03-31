@@ -6,11 +6,11 @@ const Builder = require('systemjs-builder');
 
 export = (done: any) => {
   const options = {
-    normalize: true,
+    normalize: false,
     runtime: false,
     sourceMaps: true,
     sourceMapContents: true,
-    minify: true,
+    minify: false,
     mangle: false
   };
   var builder = new Builder('./');

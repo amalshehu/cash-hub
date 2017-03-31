@@ -11,7 +11,7 @@ const INLINE_OPTIONS = {
   base: Config.TMP_DIR,
   target: 'es5',
   useRelativePaths: true,
-  removeLineBreaks: true
+  removeLineBreaks: false
 };
 
 /**
